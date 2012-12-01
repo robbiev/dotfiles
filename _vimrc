@@ -1,3 +1,5 @@
+runtime bundle/vim-unbundle/unbundle.vim
+
 if has('unix')
     language messages C
 else
@@ -16,9 +18,9 @@ if has("gui_running")
   endif
 endif
 
-"set backup
-"set backupdir=~/.vim/backup
-"set directory=~/.vim/tmp
+set backup
+set backupdir=~/.vim/backup
+set directory=~/.vim/tmp
 
 " when the screen decides to scroll
 set scrolloff=3
@@ -33,6 +35,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 " create undo files
 set undofile
+set undodir=~/.vim/tmp
 " highlight current line
 "set cursorline
 "set cursorcolumn
