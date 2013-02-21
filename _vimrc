@@ -6,7 +6,9 @@ else
     language messages en
 endif
 if has("gui_running")
-  if has("gui_gtk2")
+  if has("gui_macvim")
+    set guifont=Monaco:h13
+  elseif has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_win32")
     colorscheme desert
@@ -17,6 +19,12 @@ if has("gui_running")
     set guifont=Consolas:h12:cANSI
   endif
 endif
+if !has('gui_running')
+  let g:solarized_termtrans=1
+  let g:solarized_termcolors=256
+endif
+set background=dark
+colorscheme solarized 
 
 set backup
 set backupdir=~/.vim/backup
@@ -91,3 +99,13 @@ nnoremap <leader><space> :noh<cr>
 " tab = %
 nnoremap <tab> %
 vnoremap <tab> %
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap <left> :vertical resize -10<cr>
+nnoremap <down> :resize +10<cr>
+nnoremap <up> :resize -10<cr>
+nnoremap <right> :vertical resize +10<cr>
