@@ -11,7 +11,6 @@ if has("gui_running")
   elseif has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_win32")
-    colorscheme desert
     " maximize window
     au GUIEnter * simalt ~x
     " remove toolbar
