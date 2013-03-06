@@ -28,6 +28,25 @@ colorscheme solarized
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
+" create undo files
+set undofile
+set undodir=~/.vim/tmp
+
+" in case those dirs don't exist
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+" wrap lines, and not just on any character
+set wrap
+set linebreak
+set textwidth=80
 
 " when the screen decides to scroll
 set scrolloff=3
@@ -40,12 +59,11 @@ set laststatus=2
 " show and save everything as utf-8
 set encoding=utf-8
 set fileencoding=utf-8
-" create undo files
-set undofile
-set undodir=~/.vim/tmp
+
 " highlight current line
 "set cursorline
 "set cursorcolumn
+"
 " tab completion for vim commands
 set wildmenu
 set wildmode=list:longest
