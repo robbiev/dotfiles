@@ -108,3 +108,6 @@ nnoremap <left> :vertical resize -10<cr>
 nnoremap <down> :resize +10<cr>
 nnoremap <up> :resize -10<cr>
 nnoremap <right> :vertical resize +10<cr>
+
+nnoremap j gj
+nnoremap k gk
