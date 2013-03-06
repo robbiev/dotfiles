@@ -65,7 +65,7 @@ filetype plugin indent on
 set expandtab " spaces instead of tabs
 set tabstop=2 " width of tabs
 set shiftwidth=2 " width of indent commands
-set softtabstop=2 " fine-tunes indent/outdent
+set softtabstop=2 " amount of spaces to use and fine-tunes indent/outdent
 " backspace across newlines
 set backspace=indent,eol,start
 
@@ -79,10 +79,10 @@ syntax on
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
+
 " no beeping or screen flashing
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
-
 
 " tame searches
 set ignorecase
@@ -93,21 +93,29 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-" type \ + space to unhiglight
+
+" leader = space
+let mapleader = "\<space>"
+
+" type space + space to unhiglight
 nnoremap <leader><space> :noh<cr>
+
 " tab = %
 nnoremap <tab> %
 vnoremap <tab> %
 
+" easier window split navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" resize windows using arrow keys
 nnoremap <left> :vertical resize -10<cr>
 nnoremap <down> :resize +10<cr>
 nnoremap <up> :resize -10<cr>
 nnoremap <right> :vertical resize +10<cr>
 
+" treat wrapped lines as new lines
 nnoremap j gj
 nnoremap k gk
