@@ -14,7 +14,7 @@ if has("gui_running")
     " maximize window
     au GUIEnter * simalt ~x
     " remove toolbar
-    set guioptions-=T 
+    set guioptions-=T
     set guifont=Consolas:h12:cANSI
   endif
 endif
@@ -23,7 +23,7 @@ if !has('gui_running')
   let g:solarized_termcolors=256
 endif
 set background=dark
-colorscheme solarized 
+colorscheme solarized
 
 set backup
 set backupdir=~/.vim/backup
@@ -75,10 +75,6 @@ set nocompatible
 set rnu
 " syntax highlighting
 syntax on
-" accidentally pressing help
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
 
 " no beeping or screen flashing
 set noerrorbells visualbell t_vb=
@@ -94,28 +90,43 @@ set incsearch
 set showmatch
 set hlsearch
 
+" accidentally pressing help
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+" tab = %
+nnoremap <tab> %
+vnoremap <tab> %
+" easier window split navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" resize windows using arrow keys
+nnoremap <left> :vertical resize -10<cr>
+nnoremap <down> :resize +10<cr>
+nnoremap <up> :resize -10<cr>
+nnoremap <right> :vertical resize +10<cr>
+" treat wrapped lines as new lines
+nnoremap j gj
+nnoremap k gk
+" make Y behave like C or D
+nnoremap Y y$
+
 " leader = space
 let mapleader = "\<space>"
 
 " type space + space to unhiglight
 nnoremap <leader><space> :noh<cr>
 
-" tab = %
-nnoremap <tab> %
-vnoremap <tab> %
+" paste from clipboard, alternative to :set paste to avoid fucking up
+" indentation
+map <leader>v "*p<cr>:exe ":echo 'pasted from clipboard'"<cr>
+map <leader>c "*y<cr>:exe ":echo 'copied to clipboard'"<cr>
 
-" easier window split navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" remove all trailing whitespace
+map <leader>s :%s/\s\+$//e<cr>
 
-" resize windows using arrow keys
-nnoremap <left> :vertical resize -10<cr>
-nnoremap <down> :resize +10<cr>
-nnoremap <up> :resize -10<cr>
-nnoremap <right> :vertical resize +10<cr>
-
-" treat wrapped lines as new lines
-nnoremap j gj
-nnoremap k gk
+" added for syntastic
+nnoremap <leader>j :lnext<cr>
+nnoremap <leader>k :lprev<cr>
