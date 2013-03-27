@@ -47,6 +47,8 @@ endif
 set wrap
 set linebreak
 set textwidth=80
+" configure tab and EOL characters in case I :set list
+set listchars=tab:▸\ ,eol:¬
 
 " when the screen decides to scroll
 set scrolloff=3
@@ -78,6 +80,11 @@ set showmode
 set showcmd
 " file type + indent detection
 filetype plugin indent on
+" rainbow parens for clojure
+au VimEnter *.clj RainbowParenthesesToggle
+au Syntax *.clj RainbowParenthesesLoadRound
+au Syntax *.clj RainbowParenthesesLoadSquare
+au Syntax *.clj RainbowParenthesesLoadBraces
 
 " tabs
 set expandtab " spaces instead of tabs
