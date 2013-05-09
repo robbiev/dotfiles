@@ -1,4 +1,19 @@
-runtime bundle/vim-unbundle/unbundle.vim
+set nocompatible
+filetype off
+
+" vundle setup
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'guns/vim-clojure-static'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
 
 if has('unix')
     language messages C
@@ -94,8 +109,6 @@ set softtabstop=2 " amount of spaces to use and fine-tunes indent/outdent
 " backspace across newlines
 set backspace=indent,eol,start
 
-" no vi compat
-set nocompatible
 " relative line numbers
 set rnu
 " syntax highlighting
