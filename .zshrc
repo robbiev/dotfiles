@@ -38,11 +38,13 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 # https://github.com/seebi/dircolors-solarized/issues/10
-export PATH=~/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=~/bin:$PATH
 export EDITOR=vi
-eval `gdircolors ~/.dir_colors`
-alias ls='gls --color=auto'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+eval `dircolors ~/.dir_colors`
+alias ls='ls --color=auto'
+
+#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+#alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+
 # http://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
 setopt transient_rprompt
