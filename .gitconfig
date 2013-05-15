@@ -1,0 +1,16 @@
+[user]
+  name = Robbie Vanbrabant
+  email = robbie.vanbrabant@gmail.com
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+[core]
+  editor = vim
+[push]
+  default = current
+[alias]
+  st = status -sb
+  co = checkout
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
