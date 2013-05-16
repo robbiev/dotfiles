@@ -43,6 +43,14 @@ export EDITOR=vi
 eval `dircolors ~/.dir_colors`
 alias ls='ls --color=auto'
 
+# http://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell/25839#25839
+vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
+zle -N vi-append-x-selection
+bindkey -a '^P' vi-append-x-selection
+vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
+zle -N vi-yank-x-selection
+bindkey -a '^Y' vi-yank-x-selection
+
 #alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 #alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 
