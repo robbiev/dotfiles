@@ -42,6 +42,8 @@ export PATH=~/bin:$PATH
 export EDITOR=vi
 eval `dircolors ~/.dir_colors`
 alias ls='ls --color=auto'
+# better fonts in java apps
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 
 # http://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell/25839#25839
 vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
