@@ -14,6 +14,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'juvenn/mustache.vim'
 
 if has('unix')
     language messages C
