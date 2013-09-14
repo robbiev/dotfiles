@@ -8,6 +8,7 @@
   ui = true
 [core]
   editor = vim
+  symlinks = true
 [push]
   default = current
 [alias]

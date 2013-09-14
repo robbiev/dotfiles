@@ -86,6 +86,8 @@ set fileencoding=utf-8
 " tab completion for vim commands
 set wildmenu
 set wildmode=list:longest
+" for ctrlp
+set wildignore+=*.class,*.so
 
 " enable unsaved buffers
 set hidden
@@ -102,6 +104,9 @@ au VimEnter *.clj RainbowParenthesesToggle
 au Syntax *.clj RainbowParenthesesLoadRound
 au Syntax *.clj RainbowParenthesesLoadSquare
 au Syntax *.clj RainbowParenthesesLoadBraces
+
+" gradle = groovy
+au BufNewFile,BufRead *.gradle set filetype=groovy
 
 " tabs
 set expandtab " spaces instead of tabs
@@ -170,3 +175,6 @@ map <leader>s :%s/\s\+$//e<cr>
 " added for syntastic
 nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprev<cr>
+
+" look up for tag files
+set tags=tags;/
