@@ -7,7 +7,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'guns/vim-clojure-static'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-commentary'
@@ -16,6 +16,19 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'juvenn/mustache.vim'
 Bundle 'derekwyatt/vim-scala'
+
+" golang
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'Blackrush/vim-gocode'
+set runtimepath+=$GOROOT/misc/vim
+" no preview window when omnicompleting
+set completeopt-=preview
+" only insert the longest common match, not just the first one 
+" makes it easy to refine the search by typing
+set completeopt+=longest
+
+" does not like space as leader...
+Bundle 'vim-scripts/paredit.vim'
 
 if has('unix')
     language messages C
@@ -63,7 +76,7 @@ endif
 " wrap lines, and not just on any character
 set wrap
 set linebreak
-set textwidth=80
+"set textwidth=80
 " configure tab and EOL characters in case I :set list
 set listchars=tab:▸\ ,eol:¬
 
@@ -159,10 +172,11 @@ nnoremap k gk
 nnoremap Y y$
 
 " leader = space
-let mapleader = "\<space>"
+"let mapleader = "\<space>"
 
+let mapleader = ","
 " type space + space to unhiglight
-nnoremap <leader><space> :noh<cr>
+nnoremap <leader><leader> :noh<cr>
 
 " paste from clipboard, alternative to :set paste to avoid fucking up
 " indentation
