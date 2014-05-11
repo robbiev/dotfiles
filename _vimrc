@@ -18,9 +18,9 @@ Bundle 'juvenn/mustache.vim'
 Bundle 'derekwyatt/vim-scala'
 
 " golang
-Bundle 'jnwhiteh/vim-golang'
+"Bundle 'jnwhiteh/vim-golang'
 Bundle 'Blackrush/vim-gocode'
-set runtimepath+=$GOROOT/misc/vim
+"set runtimepath+=$GOROOT/misc/vim
 " no preview window when omnicompleting
 set completeopt-=preview
 " only insert the longest common match, not just the first one 
