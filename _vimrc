@@ -7,7 +7,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'scrooloose/syntastic'
 Bundle 'guns/vim-clojure-static'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-commentary'
@@ -16,11 +15,15 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'juvenn/mustache.vim'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'tpope/vim-sleuth'
 
 " golang
-"Bundle 'jnwhiteh/vim-golang'
-Bundle 'Blackrush/vim-gocode'
-"set runtimepath+=$GOROOT/misc/vim
+Bundle 'fatih/vim-go'
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_fmt_command = "goimports"
+
 " no preview window when omnicompleting
 set completeopt-=preview
 " only insert the longest common match, not just the first one 
@@ -129,8 +132,8 @@ set softtabstop=2 " amount of spaces to use and fine-tunes indent/outdent
 " backspace across newlines
 set backspace=indent,eol,start
 
-" relative line numbers
-set rnu
+" relative line numbers (NOTE: commented because slow in OS X terminal)
+" set rnu
 " syntax highlighting
 syntax on
 
