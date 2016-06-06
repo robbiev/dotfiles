@@ -102,8 +102,13 @@ set fileencoding=utf-8
 " tab completion for vim commands
 set wildmenu
 set wildmode=list:longest
+
 " for ctrlp
-set wildignore+=*.class,*.so
+set wildignore+=*.class,*.so,node_modules
+" start from the directory of the current file, but only if the current
+" working directory outside of CtrlP is not a direct ancestor of the directory
+" of the current file.
+let g:ctrlp_working_path_mode = 'a'
 
 " enable unsaved buffers
 set hidden
