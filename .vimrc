@@ -2,36 +2,34 @@ set nocompatible
 filetype off
 
 " vundle setup
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'guns/vim-clojure-static'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'juvenn/mustache.vim'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'tpope/vim-sleuth'
+let dotvimdir=split(&rtp,',')[0]
+let &rtp.=','.dotvimdir.'/bundle/Vundle.vim'
+call vundle#begin(dotvimdir.'/bundle')
 
-" golang
-Bundle 'fatih/vim-go'
+Plugin 'gmarik/vundle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sleuth'
+Plugin 'fatih/vim-go'
+
+call vundle#end()
+
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_fmt_command = "goimports"
+
+"set autochdir
+set tags+=./tags;
 
 " no preview window when omnicompleting
 set completeopt-=preview
 " only insert the longest common match, not just the first one 
 " makes it easy to refine the search by typing
 set completeopt+=longest
-
-" does not like space as leader...
-Bundle 'vim-scripts/paredit.vim'
 
 if has('unix')
     language messages C
