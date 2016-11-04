@@ -22,9 +22,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_fmt_command = "goimports"
 
-"set autochdir
-set tags+=./tags;
-
 " no preview window when omnicompleting
 set completeopt-=preview
 " only insert the longest common match, not just the first one 
@@ -118,11 +115,6 @@ set showmode
 set showcmd
 " file type + indent detection
 filetype plugin indent on
-" rainbow parens for clojure
-au VimEnter *.clj RainbowParenthesesToggle
-au Syntax *.clj RainbowParenthesesLoadRound
-au Syntax *.clj RainbowParenthesesLoadSquare
-au Syntax *.clj RainbowParenthesesLoadBraces
 
 " gradle = groovy
 au BufNewFile,BufRead *.gradle set filetype=groovy
@@ -181,7 +173,7 @@ nnoremap Y y$
 "let mapleader = "\<space>"
 
 let mapleader = ","
-" type space + space to unhiglight
+" type leader + leader to unhiglight
 nnoremap <leader><leader> :noh<cr>
 
 " paste from clipboard, alternative to :set paste to avoid fucking up
@@ -196,5 +188,6 @@ map <leader>s :%s/\s\+$//e<cr>
 nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprev<cr>
 
-" look up for tag files
-set tags=tags;/
+" tag files
+"set autochdir
+set tags+=./tags;
