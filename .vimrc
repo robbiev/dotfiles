@@ -208,6 +208,8 @@ nnoremap <Leader>f :Files<CR>
 " vim-rooter sets the vim pwd to the nearest project
 nnoremap <Leader>r :Rooter<CR>
 
+" tmux: repeat the last command in pane 1 (right pane in vert split)
+nnoremap <Leader>t :call system('for pane in $(tmux run "echo #{session_name}:#{window_index}.1"); do tmux send-keys -t $pane C-p C-j; done') <CR> <CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usuful key mappings I always forget
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
