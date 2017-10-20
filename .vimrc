@@ -15,6 +15,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'fatih/vim-go'
+Plug 'airblade/vim-rooter'
 
 " Initialize plugin system
 call plug#end()
@@ -27,12 +28,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_fmt_command = "goimports"
 
-" for ctrlp
-set wildignore+=*.class,*.so,node_modules
-" start from the directory of the current file, but only if the current
-" working directory outside of CtrlP is not a direct ancestor of the directory
-" of the current file.
-let g:ctrlp_working_path_mode = 'a'
+" :Rooter sets the working directory to the nearest project
+let g:rooter_manual_only = 1
+let g:rooter_patterns = ['Makefile', '.git/']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI
@@ -103,6 +101,9 @@ set hlsearch
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set the pwd to $HOME
+cd
+
 set nobackup
 set noswapfile
 
@@ -200,13 +201,17 @@ nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprev<cr>
 
 " fzf
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>f :Files<CR>
-nmap <Leader>t :Tags<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>t :Tags<CR>
+nnoremap <Leader>f :Files<CR>
+
+" vim-rooter sets the vim pwd to the nearest project
+nnoremap <Leader>r :Rooter<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usuful key mappings I always forget
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " :so % to reload the .vimrc (:source the current file)
+" :cd %:h to change the pwd to the current file directory
 " CTRL+SHIFT+6: toggle between last two buffers
 " CTRL+W R: rotate buffers (swap two buffers)
