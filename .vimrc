@@ -5,20 +5,19 @@ set nocompatible
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
-let dotvimdir=split(&rtp,',')[0]
-let &rtp.=','.dotvimdir.'/bundle/Vundle.vim'
-call vundle#begin(dotvimdir.'/bundle')
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/vundle'
-Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-sleuth'
-Plugin 'fatih/vim-go'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+Plug 'fatih/vim-go'
 
-call vundle#end()
+" Initialize plugin system
+call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configure plugins
@@ -200,8 +199,14 @@ map <leader>s :%s/\s\+$//e<cr>
 nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprev<cr>
 
+" fzf
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>t :Tags<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usuful key mappings I always forget
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :so % to reload the .vimrc (:source the current file)
 " CTRL+SHIFT+6: toggle between last two buffers
 " CTRL+W R: rotate buffers (swap two buffers)
