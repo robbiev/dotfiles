@@ -28,10 +28,6 @@ let g:go_highlight_methods=1
 let g:go_highlight_structs=1
 let g:go_fmt_command="goimports"
 
-" Automatically show type info after 500ms
-let g:go_auto_type_info=1
-let g:go_updatetime=500
-
 " :Rooter sets the working directory to the nearest project
 let g:rooter_manual_only=1
 let g:rooter_patterns=['Makefile', '.git/']
@@ -229,3 +225,4 @@ nnoremap <Leader>k :call system('for pane in $(tmux run "echo #{session_name}:#{
 " :GoAddTags
 " :GoFillStruct to add all struct fields with their default value
 " :GoKeyify to add keys to Go structs
+" :redraw! to clear the screen and redraw vim
