@@ -1,10 +1,9 @@
 set nocompatible
+filetype off
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -16,6 +15,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'fatih/vim-go'
 Plug 'airblade/vim-rooter'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Initialize plugin system
 call plug#end()
@@ -23,14 +23,22 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configure plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_fmt_command = "goimports"
+let g:go_highlight_functions=1
+let g:go_highlight_methods=1
+let g:go_highlight_structs=1
+let g:go_fmt_command="goimports"
+
+" Automatically show type info after 500ms
+let g:go_auto_type_info=1
+let g:go_updatetime=500
 
 " :Rooter sets the working directory to the nearest project
-let g:rooter_manual_only = 1
-let g:rooter_patterns = ['Makefile', '.git/']
+let g:rooter_manual_only=1
+let g:rooter_patterns=['Makefile', '.git/']
+
+let g:gutentags_cache_dir='~/.vim/gutentags'
+let g:gutentags_project_root=['Makefile', '.gutentags']
+set statusline+=%{gutentags#statusline()}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI
@@ -74,8 +82,9 @@ set ruler
 " always show status bar
 set laststatus=2
 
-" show which mode we are in
-set showmode
+" don't show which mode we are in
+" https://github.com/fatih/vim-go/pull/685
+set noshowmode
 
 " show the command we are currently typing and visual selection lenghts
 set showcmd
@@ -115,10 +124,6 @@ set undodir=~/.vim/tmp
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
 endif
-
-" tag files
-"set autochdir
-set tags+=./tags;
 
 " show and save everything as utf-8
 set encoding=utf-8
@@ -204,12 +209,15 @@ nnoremap <leader>k :lprev<cr>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>f :Files<CR>
+" GoDecl leverages fzf.vim
+autocmd FileType go nnoremap <Leader>d :GoDecls<CR>
 
 " vim-rooter sets the vim pwd to the nearest project
 nnoremap <Leader>r :Rooter<CR>
 
 " tmux: repeat the last command in pane 1 (right pane in vert split)
-nnoremap <Leader>t :call system('for pane in $(tmux run "echo #{session_name}:#{window_index}.1"); do tmux send-keys -t $pane C-p C-j; done') <CR> <CR>
+nnoremap <Leader>k :call system('for pane in $(tmux run "echo #{session_name}:#{window_index}.1"); do tmux send-keys -t $pane C-p C-j; done') <CR> <CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usuful key mappings I always forget
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,3 +225,7 @@ nnoremap <Leader>t :call system('for pane in $(tmux run "echo #{session_name}:#{
 " :cd %:h to change the pwd to the current file directory
 " CTRL+SHIFT+6: toggle between last two buffers
 " CTRL+W R: rotate buffers (swap two buffers)
+" :GoImpl io.ReadWriteCloser when you're on top of a type
+" :GoAddTags
+" :GoFillStruct to add all struct fields with their default value
+" :GoKeyify to add keys to Go structs
