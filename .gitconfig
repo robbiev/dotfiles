@@ -12,6 +12,7 @@
 [push]
   default = current
 [alias]
+  branches = branch --sort=committerdate
   st = -c color.status=always status -sb
   snw = ! git -c color.status=always status -sb | nw
   co = checkout
