@@ -27,6 +27,12 @@ let g:go_highlight_functions=1
 let g:go_highlight_methods=1
 let g:go_highlight_structs=1
 let g:go_fmt_command="goimports"
+let g:go_fmt_options = {
+  \   "goimports": "-local github.com/monzo",
+  \ }
+let g:go_version_warning = 0
+let g:go_def_mode = "gopls"
+let g:go_info_mode = "gopls"
 
 " :Rooter sets the working directory to the nearest project
 let g:rooter_manual_only=1
@@ -34,7 +40,7 @@ let g:rooter_patterns=['Makefile', '.git/']
 
 let g:gutentags_cache_dir='~/.vim/gutentags'
 let g:gutentags_project_root=['Makefile', '.gutentags']
-set statusline+=%{gutentags#statusline()}
+"set statusline+=%{gutentags#statusline()}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI
@@ -154,6 +160,9 @@ set shiftwidth=2 " width of indent commands
 set softtabstop=2 " amount of spaces to use and fine-tunes indent/outdent
 set backspace=indent,eol,start " backspace across newlines
 
+" When I file changes on disk, automatically load the updated version
+set autoread
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -181,6 +190,10 @@ nnoremap k gk
 " make Y behave like C or D
 nnoremap Y y$
 
+" keep selected text selected when fixing indentation
+vnoremap < <gv
+vnoremap > >gv
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -207,6 +220,7 @@ nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>f :Files<CR>
 " GoDecl leverages fzf.vim
 autocmd FileType go nnoremap <Leader>d :GoDecls<CR>
+autocmd FileType go nnoremap <Leader>i :GoInfo<CR>
 
 " vim-rooter sets the vim pwd to the nearest project
 nnoremap <Leader>r :Rooter<CR>
