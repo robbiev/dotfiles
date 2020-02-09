@@ -109,6 +109,28 @@ set incsearch
 set showmatch
 set hlsearch
 
+" Cursor
+"https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode/30199177
+"Ps = 0  -> blinking block.
+"Ps = 1  -> blinking block (default).
+"Ps = 2  -> steady block.
+"Ps = 3  -> blinking underline.
+"Ps = 4  -> steady underline.
+"Ps = 5  -> blinking bar (xterm).
+"Ps = 6  -> steady bar (xterm).
+" insert mode
+let &t_SI.="\e[5 q"
+" replace mode
+let &t_SR.="\e[4 q"
+" normal mode
+let &t_EI.="\e[1 q"
+
+" Time out on key codes but not mappings.
+" Basically this makes terminal Vim work sanely.
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
