@@ -5,3 +5,14 @@ PS1='\[\e[0;32m\][\[\e[m\]\u\[\e[1;31m\] \w\[\e[m\]\[\e[1;32m\]]
 export LS_OPTIONS='--color=auto'
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export HISTCONTROL=ignoreboth
+export PATH="~/bin:$PATH"
+export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
+
+function 1p {
+  if [[ ! -z "${OP_SESSION_my}" ]]; then
+    echo "already signed in"
+    return
+  fi
+  eval $(op signin my)
+}
