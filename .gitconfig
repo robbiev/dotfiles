@@ -9,17 +9,18 @@
 [core]
   editor = vim
   symlinks = true
+[pull]
+  ff = only
 [push]
   default = current
 [alias]
   branches = ! git branch --sort=committerdate | tail -10
+  b = branch --show-current
   st = -c color.status=always status -sb
   snw = ! git -c color.status=always status -sb | nw
   co = checkout
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   prdiff = ! git diff $(git merge-base --fork-point master)
-[transfer]
-  fsckobjects = true
 [url "git@github.com:"]
   insteadOf = https://github.com/
 [filter "lfs"]
