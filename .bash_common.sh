@@ -8,6 +8,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export HISTCONTROL=ignoreboth
 export PATH="~/bin:$PATH"
 export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
+export PIP_REQUIRE_VIRTUALENV=true
 
 function 1p {
   if [[ ! -z "${OP_SESSION_my}" ]]; then
