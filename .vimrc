@@ -34,6 +34,10 @@ let g:go_version_warning = 0
 let g:go_def_mode = "gopls"
 let g:go_info_mode = "gopls"
 
+" Fix losing fold state on save
+" https://github.com/fatih/vim-go/issues/502
+let g:go_fmt_experimental = 1
+
 " :Rooter sets the working directory to the nearest project
 let g:rooter_manual_only=1
 let g:rooter_patterns=['Makefile', '.git/']
@@ -130,6 +134,10 @@ let &t_EI.="\e[1 q"
 set notimeout
 set ttimeout
 set ttimeoutlen=10
+
+" folds
+set foldmethod=indent
+set foldlevelstart=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files
