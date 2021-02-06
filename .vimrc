@@ -6,6 +6,7 @@ filetype off
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
+" General
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'altercation/vim-colors-solarized'
@@ -13,9 +14,20 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
-Plug 'fatih/vim-go'
 Plug 'airblade/vim-rooter'
 Plug 'ludovicchabant/vim-gutentags'
+
+" Go
+Plug 'fatih/vim-go'
+
+" Lisp
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+if has('nvim')
+  Plug 'Olical/aniseed', { 'tag': 'v3.14.0' }
+  Plug 'bakpakin/fennel.vim'
+  Plug 'Olical/conjure', {'tag': 'v4.13.0'}
+endif
 
 " Initialize plugin system
 call plug#end()
@@ -228,6 +240,7 @@ vnoremap > >gv
 " Leader key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
+let maplocalleader = "\<space>"
 
 " type leader + leader to unhiglight
 nnoremap <leader><leader> :noh<cr>
@@ -270,3 +283,4 @@ nnoremap <Leader>k :call system('for pane in $(tmux run "echo #{session_name}:#{
 " :GoFillStruct to add all struct fields with their default value
 " :GoKeyify to add keys to Go structs
 " :redraw! to clear the screen and redraw vim
+" CTRL+R CTRL+W to insert the word under the cursor in ex mode
