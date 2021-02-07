@@ -24,7 +24,7 @@ Plug 'fatih/vim-go'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 if has('nvim')
-  Plug 'Olical/aniseed', { 'tag': 'v3.14.0' }
+  Plug 'Olical/aniseed', { 'branch': 'master' }
   Plug 'bakpakin/fennel.vim'
   Plug 'Olical/conjure', {'tag': 'v4.13.0'}
 endif
@@ -58,6 +58,7 @@ let g:gutentags_cache_dir='~/.vim/gutentags'
 let g:gutentags_project_root=['Makefile', '.gutentags']
 "set statusline+=%{gutentags#statusline()}
 
+let g:sexp_filetypes = 'clojure,scheme,lisp,fennel'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -208,10 +209,6 @@ set autoread
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" accidentally pressing help
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
 
 " easier window split navigation
 nnoremap <C-h> <C-w>h
@@ -241,6 +238,9 @@ vnoremap > >gv
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 let maplocalleader = "\<space>"
+"
+" write the current file
+nnoremap <leader>w :w<cr>
 
 " type leader + leader to unhiglight
 nnoremap <leader><leader> :noh<cr>
@@ -261,6 +261,7 @@ nnoremap <leader>k :lprev<cr>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>f :Files<CR>
+
 " GoDecl leverages fzf.vim
 autocmd FileType go nnoremap <Leader>d :GoDecls<CR>
 autocmd FileType go nnoremap <Leader>i :GoInfo<CR>
