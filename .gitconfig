@@ -15,6 +15,7 @@
   default = current
 [alias]
   branches = ! git branch --sort=committerdate | tail -10
+  allbranches = ! git branch --sort=committerdate
   b = branch --show-current
   st = -c color.status=always status -sb
   snw = ! git -c color.status=always status -sb | nw

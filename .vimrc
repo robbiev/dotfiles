@@ -258,19 +258,37 @@ nnoremap <leader>j :lnext<cr>
 nnoremap <leader>k :lprev<cr>
 
 " fzf
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>t :Tags<CR>
-nnoremap <Leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>f :Files<CR>
 
 " GoDecl leverages fzf.vim
-autocmd FileType go nnoremap <Leader>d :GoDecls<CR>
-autocmd FileType go nnoremap <Leader>i :GoInfo<CR>
+autocmd FileType go nnoremap <leader>d :GoDecls<CR>
+autocmd FileType go nnoremap <leader>i :GoInfo<CR>
+
+" fzf.vim :Rg command to add --multiline and remove smart case
+command! -bang -nargs=* Rgm call fzf#vim#grep("rg --multiline --column --line-number --no-heading --color=always -r '$1' -- ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+" For debugging
+"command! -bang -nargs=* Rg call fzf#vim#grep("rg -- ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+
+" Go [M]ethod definitions
+autocmd FileType go nnoremap <localleader>m :Rg func\s+\([^\)]+\)\s+<C-R><C-W>\(<CR>
+" Go [F]unction definitions
+autocmd FileType go nnoremap <localleader>f :Rg func\s+<C-R><C-W>\(<CR>
+" Go function or method [C]alls
+autocmd FileType go nnoremap <localleader>c :Rg <C-R><C-W>\(<CR>
+" Go struct [M]embers
+autocmd FileType go nnoremap <localleader>m :Rgm type\s+[A-Za-z]+\s+struct\s+\{(?:\n*[^\}]*)*(\s+<C-R><C-W>\s+)(?:\n*[^\}]*)*\}<CR>
+" Go [S]tructs
+autocmd FileType go nnoremap <localleader>s :Rg type\s+<C-R><C-W>\s+struct<CR>
+" Go [I]interfaces
+autocmd FileType go nnoremap <localleader>i :Rg type\s+<C-R><C-W>\s+interface<CR>
 
 " vim-rooter sets the vim pwd to the nearest project
-nnoremap <Leader>r :Rooter<CR>
+nnoremap <leader>r :Rooter<CR>
 
 " tmux: repeat the last command in pane 1 (right pane in vert split)
-nnoremap <Leader>k :call system('for pane in $(tmux run "echo #{session_name}:#{window_index}.1"); do tmux send-keys -t $pane C-p C-j; done') <CR> <CR>
+nnoremap <leader>k :call system('for pane in $(tmux run "echo #{session_name}:#{window_index}.1"); do tmux send-keys -t $pane C-p C-j; done') <CR> <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usuful key mappings I always forget
