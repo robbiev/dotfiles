@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+# Back up
+# - dropbox
+# - iPhone backups
+restic -r ~/backup backup \
+  --verbose \
+  ~/dropbox \
+  ~/Library/Application\ Support/MobileSync
+
+# Verify and upload the backup directory to ds9
+restic -r ~/backup check --read-data
+rclone sync ~/backup ds9sftp:/home/backup/robbie_restic -v
+
+# Prune old backups
+restic -r ~/backup forget --keep-monthly 5 --keep-last 5 --prune

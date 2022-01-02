@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+if [[ -z "${OP_SESSION_my}" ]]; then
+  echo "log in to 1Password first (type '1p')"
+  exit 1
+fi
+
+export RCLONE_CONFIG_PASS=$(op get item rclone | jq -r .details.password)
+/usr/local/bin/rclone "$@"
