@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+gphotos-cdp -dldir ~/dropbox/gphotos-cdp --dev -v
