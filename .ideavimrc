@@ -1,0 +1,35 @@
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+set visualbell
+set noerrorbells
+set scrolloff=3
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set hlsearch
+
+" treat wrapped lines as new lines
+nnoremap j gj
+nnoremap k gk
+
+" make Y behave like C or D
+nnoremap Y y$
+
+" keep selected text selected when fixing indentation
+vnoremap < <gv
+vnoremap > >gv
+
+let mapleader = ","
+"
+" type leader + leader to unhiglight
+nnoremap <leader><leader> :noh<cr>
+
+" easier window split navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Requires the Wrap to Column plugin
+vmap gq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
