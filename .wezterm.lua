@@ -11,4 +11,6 @@ end
 config.font = wezterm.font 'Flexi IBM VGA True'
 config.font_size = 16
 
+config.hide_tab_bar_if_only_one_tab = true
+
 return config
