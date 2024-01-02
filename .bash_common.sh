@@ -7,7 +7,7 @@ export EDITOR=vim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export HISTCONTROL=ignoreboth
 export PATH="~/bin:$PATH"
-export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
+#export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
 export PIP_REQUIRE_VIRTUALENV=true
 
 function 1p {
