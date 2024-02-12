@@ -17,3 +17,6 @@ function 1p {
   fi
   eval $(op signin my)
 }
+
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
