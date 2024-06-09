@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-rooter'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'jmckiern/vim-venter'
 
 " Go
 Plug 'fatih/vim-go'
@@ -78,6 +79,9 @@ else
   let g:solarized_termtrans=1
   let g:solarized_termcolors=256
 endif
+
+" neovim 0.10 sets this by default, turn it off until I can tweak it
+set notermguicolors
 
 " no beeping or screen flashing
 set noerrorbells visualbell t_vb=
@@ -283,6 +287,8 @@ autocmd FileType go nnoremap <localleader>m :Rgm type\s+[A-Za-z]+\s+struct\s+\{(
 autocmd FileType go nnoremap <localleader>s :Rg type\s+<C-R><C-W>\s+struct<CR>
 " Go [I]interfaces
 autocmd FileType go nnoremap <localleader>i :Rg type\s+<C-R><C-W>\s+interface<CR>
+
+autocmd FileType fennel setlocal equalprg=fnlfmt\ -
 
 " vim-rooter sets the vim pwd to the nearest project
 nnoremap <leader>r :Rooter<CR>
