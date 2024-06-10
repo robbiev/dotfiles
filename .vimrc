@@ -1,4 +1,3 @@
-set nocompatible
 filetype off
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,50 +67,17 @@ let g:sexp_filetypes = 'clojure,scheme,lisp,fennel'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("gui_running")
-  if has("gui_macvim")
-    set guifont=Monaco:h13
-  elseif has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_win32")
-    " maximize window
-    au GUIEnter * simalt ~x
-    " remove toolbar
-    set guioptions-=T
-    set guifont=Consolas:h12:cANSI
-  endif
-else
-  let g:solarized_termtrans=1
-endif
-
-" no beeping or screen flashing
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+let g:solarized_termtrans=1
 
 set background=dark
 colorscheme solarized8
 
-" syntax highlighting
-syntax on
-
-" have fast terminal, no slowness
-set ttyfast
-
 " when the screen decides to scroll
 set scrolloff=3
-
-" show position in the file
-set ruler
-
-" always show status bar
-set laststatus=2
 
 " don't show which mode we are in
 " https://github.com/fatih/vim-go/pull/685
 set noshowmode
-
-" show the command we are currently typing and visual selection lenghts
-set showcmd
 
 " no preview window when omnicompleting
 " only insert the longest common match, not just the first one 
@@ -120,16 +86,13 @@ set completeopt-=preview
 set completeopt+=longest
 
 " tab completion for vim commands
-set wildmenu
 set wildmode=list:longest
 
 " search
 set ignorecase
 set smartcase
 set gdefault
-set incsearch
 set showmatch
-set hlsearch
 
 " Cursor
 "https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode/30199177
@@ -168,16 +131,6 @@ set noswapfile
 
 " create undo files
 set undofile
-set undodir=~/.vim/tmp
-
-" in case those dirs don't exist
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
-endif
-
-" show and save everything as utf-8
-set encoding=utf-8
-set fileencoding=utf-8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffers
@@ -195,21 +148,11 @@ set linebreak
 " configure tab and EOL characters in case I :set list
 set listchars=tab:▸\ ,eol:¬
 
-" enable unsaved buffers
-set hidden
-
-" start new lines at same indetation
-set autoindent
-
 " tabs
 set expandtab " spaces instead of tabs
 set tabstop=2 " width of tabs
 set shiftwidth=2 " width of indent commands
 set softtabstop=2 " amount of spaces to use and fine-tunes indent/outdent
-set backspace=indent,eol,start " backspace across newlines
-
-" When I file changes on disk, automatically load the updated version
-set autoread
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General key mappings
