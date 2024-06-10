@@ -9,7 +9,12 @@ call plug#begin('~/.vim/plugged')
 " General
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'altercation/vim-colors-solarized'
+
+" I used to use altercation/vim-colors-solarized but Neovim 0.10 introduced
+" 'set termguicolors' by default, and the old solarized plugin wasn't
+" compatible.
+Plug 'lifepillar/vim-solarized8', { 'branch': 'neovim' }
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -77,18 +82,14 @@ if has("gui_running")
   endif
 else
   let g:solarized_termtrans=1
-  let g:solarized_termcolors=256
 endif
-
-" neovim 0.10 sets this by default, turn it off until I can tweak it
-set notermguicolors
 
 " no beeping or screen flashing
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 set background=dark
-colorscheme solarized
+colorscheme solarized8
 
 " syntax highlighting
 syntax on

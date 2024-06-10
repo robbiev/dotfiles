@@ -7,7 +7,7 @@
   branch = auto
   ui = true
 [core]
-  editor = vim
+  editor = nvim
   symlinks = true
 [pull]
   ff = only
