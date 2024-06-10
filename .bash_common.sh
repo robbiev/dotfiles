@@ -8,13 +8,14 @@ export HISTCONTROL=ignoreboth
 export PATH="~/bin:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
 
-if command -v fzf > /dev/null
-then
+if command -v fzf > /dev/null; then
   eval "$(fzf --bash)"
 fi
 
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
+if test -r  "$HOME/.asdf/asdf.sh"; then
+  source "$HOME/.asdf/asdf.sh"
+  source "$HOME/.asdf/completions/asdf.bash"
+fi
 
 alias vi=nvim
 alias vim=nvim

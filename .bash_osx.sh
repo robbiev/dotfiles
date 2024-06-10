@@ -6,4 +6,6 @@ export HOMEBREW_NO_ANALYTICS=1
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # brew install bash-completion@2
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+if test -r "/usr/local/etc/profile.d/bash_completion.sh"; then
+  source "/usr/local/etc/profile.d/bash_completion.sh"
+fi
