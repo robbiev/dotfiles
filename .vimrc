@@ -26,11 +26,9 @@ Plug 'fatih/vim-go'
 " Lisp
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-if has('nvim')
-  Plug 'Olical/aniseed', { 'branch': 'master' }
-  Plug 'bakpakin/fennel.vim'
-  Plug 'Olical/conjure', {'tag': 'v4.13.0'}
-endif
+Plug 'Olical/aniseed', { 'branch': 'master' }
+Plug 'bakpakin/fennel.vim'
+Plug 'Olical/conjure', {'tag': 'v4.13.0'}
 
 " Initialize plugin system
 call plug#end()
