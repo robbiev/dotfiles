@@ -5,7 +5,7 @@ export LS_OPTIONS='--color=auto'
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export HISTCONTROL=ignoreboth
-export PATH="~/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
 
 if command -v fzf > /dev/null; then

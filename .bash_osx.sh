@@ -1,5 +1,5 @@
 alias plaincopy="pbpaste -Prefer txt | pbcopy"
-eval `gdircolors ~/.dir_colors`
+eval "$(gdircolors ~/.dir_colors)"
 alias ls='gls $LS_OPTIONS -hF'
 export HOMEBREW_NO_ANALYTICS=1
 # macOS now defaults to zsh, disable warning if you're using bash
