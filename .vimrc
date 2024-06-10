@@ -195,10 +195,6 @@ map <leader>c "*y<cr>:exe ":echo 'copied to clipboard'"<cr>
 " remove all trailing whitespace
 map <leader>s :%s/\s\+$//e<cr>
 
-" added for syntastic
-nnoremap <leader>j :lnext<cr>
-nnoremap <leader>k :lprev<cr>
-
 " fzf
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
@@ -230,9 +226,6 @@ autocmd FileType fennel setlocal equalprg=fnlfmt\ -
 
 " vim-rooter sets the vim pwd to the nearest project
 nnoremap <leader>r :Rooter<CR>
-
-" tmux: repeat the last command in pane 1 (right pane in vert split)
-nnoremap <leader>k :call system('for pane in $(tmux run "echo #{session_name}:#{window_index}.1"); do tmux send-keys -t $pane C-p C-j; done') <CR> <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usuful key mappings I always forget
