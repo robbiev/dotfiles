@@ -1,0 +1,26 @@
+# Need to force bash as the auto-detect doesn't work for it
+command = /usr/local/bin/bash
+shell-integration = bash
+
+theme = "Builtin Solarized Dark"
+# Inverting seems to work better with Solarized
+selection-invert-fg-bg = true
+
+background-opacity = .95
+background-blur-radius = 20
+
+font-family = "JetBrains Mono"
+font-size = 16
+
+mouse-hide-while-typing = true
+
+macos-non-native-fullscreen = visible-menu
+macos-option-as-alt = left
+
+# Increase these up from the default of 10
+keybind = super+ctrl+down=resize_split:down,30
+keybind = super+ctrl+up=resize_split:up,30
+keybind = super+ctrl+left=resize_split:left,30
+keybind = super+ctrl+right=resize_split:right,30
+
+
