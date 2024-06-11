@@ -57,6 +57,9 @@ vim.keymap.set("", "<leader>s", ":%s/\\s\\+$//e<cr>", {})
 -- Go to current file directory
 vim.keymap.set("", "<leader>R", ":cd %:h<cr>", {})
 
+-- Open netrw
+vim.keymap.set("", "<leader>x", vim.cmd.Ex)
+
 --
 -- Usuful key mappings I always forget
 --
