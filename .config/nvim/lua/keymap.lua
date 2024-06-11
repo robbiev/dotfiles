@@ -10,6 +10,20 @@ vim.keymap.set("n", "<down>", ":resize +10<cr>", {noremap = true})
 vim.keymap.set("n", "<up>", ":resize -10<cr>", {noremap = true})
 vim.keymap.set("n", "<right>", ":vertical resize +10<cr>", {noremap = true})
 
+-- Hack to push the buffer text to the right when editing files on a large monitor.
+-- This is a simple alternative to various zen mode plugins.
+-- It works for me because I don't use line numbers or anything like that.
+vim.keymap.set("", "<localleader><right>", function()
+  vim.opt.statuscolumn = vim.opt.statuscolumn:get() .. string.rep(" ", 16)
+end)
+vim.keymap.set("", "<localleader><left>", function()
+  -- start from the first character and end on the 9th last character
+  vim.opt.statuscolumn = vim.opt.statuscolumn:get():sub(1, -17)
+end)
+vim.keymap.set("", "<localleader><down>", function()
+  vim.opt.statuscolumn = ""
+end)
+
 -- Treat wrapped lines as new lines
 vim.keymap.set("n", "j", "gj", {noremap = true})
 vim.keymap.set("n", "k", "gk", {noremap = true})
@@ -42,6 +56,7 @@ vim.keymap.set("", "<leader>s", ":%s/\\s\\+$//e<cr>", {})
 
 -- Go to current file directory
 vim.keymap.set("", "<leader>R", ":cd %:h<cr>", {})
+
 --
 -- Usuful key mappings I always forget
 --

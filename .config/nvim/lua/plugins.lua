@@ -3,7 +3,6 @@ return {
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "tpope/vim-sleuth" },
-  { "jmckiern/vim-venter" },
   { 
     "lifepillar/vim-solarized8",
     branch = "neovim",
@@ -28,7 +27,6 @@ return {
     end
   },
   {
-    -- :Rooter sets the working directory to the nearest project
     "airblade/vim-rooter",
     config = function()
       vim.g.rooter_manual_only = 1
