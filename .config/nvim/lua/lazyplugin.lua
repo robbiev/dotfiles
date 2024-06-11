@@ -67,12 +67,13 @@ return {
   { "tpope/vim-sexp-mappings-for-regular-people" },
   { "Olical/aniseed",
     branch = "master",
+    lazy = true,
     config = function()
       require("aniseed.env").init()
     end,
   },
   { "bakpakin/fennel.vim" },
-  { "Olical/conjure", tag = "v4.13.0" },
+  { "Olical/conjure", tag = "v4.13.0", lazy = true },
   {
     "ghostty-macos",
     dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
