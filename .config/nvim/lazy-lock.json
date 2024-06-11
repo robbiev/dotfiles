@@ -9,5 +9,5 @@
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },
   "vim-solarized8": { "branch": "neovim", "commit": "cddfb6e61f4c92f22b1ddce7d60e32688d700ed8" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
-  "vim-venter": { "branch": "master", "commit": "8cbb93f912a85e320a3eaeee0b9ee5934043930a" }
+  "zig.vim": { "branch": "master", "commit": "54c216e5306a5c3878a60596aacb94dca8652ab9" }
 }

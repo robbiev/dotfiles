@@ -3,6 +3,7 @@ return {
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "tpope/vim-sleuth" },
+  { "ziglang/zig.vim" },
   { 
     "lifepillar/vim-solarized8",
     branch = "neovim",
