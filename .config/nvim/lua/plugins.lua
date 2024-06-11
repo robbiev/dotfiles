@@ -1,4 +1,9 @@
 return {
+  { "tpope/vim-commentary" },
+  { "tpope/vim-repeat" },
+  { "tpope/vim-surround" },
+  { "tpope/vim-sleuth" },
+  { "jmckiern/vim-venter" },
   { 
     "lifepillar/vim-solarized8",
     branch = "neovim",
@@ -22,10 +27,6 @@ return {
       vim.keymap.set("n", "<leader>f", ":Files<CR>", {noremap = true})
     end
   },
-  { "tpope/vim-commentary" },
-  { "tpope/vim-repeat" },
-  { "tpope/vim-surround" },
-  { "tpope/vim-sleuth" },
   {
     -- :Rooter sets the working directory to the nearest project
     "airblade/vim-rooter",
@@ -36,16 +37,6 @@ return {
       vim.keymap.set("n", "<leader>r", ":Rooter<CR>", {noremap = true})
     end
   },
-  { 
-    "ludovicchabant/vim-gutentags" ,
-    config = function()
-      vim.g.gutentags_cache_dir="~/.vim/gutentags"
-      vim.g.gutentags_project_root={"Makefile", ".gutentags"}
-      -- set statusline+=%{gutentags#statusline()}
-    end
-
-  },
-  { "jmckiern/vim-venter" },
   {
     "fatih/vim-go",
     config = function()
@@ -65,24 +56,6 @@ return {
       vim.g.go_fmt_experimental = 1
     end,
   },
-
-  -- Lisp
-  { 
-    "guns/vim-sexp",
-    config = function()
-      vim.g.sexp_filetypes = "clojure,scheme,lisp,fennel"
-    end
-  },
-  { "tpope/vim-sexp-mappings-for-regular-people" },
-  { "Olical/aniseed",
-    branch = "master",
-    lazy = true,
-    config = function()
-      require("aniseed.env").init()
-    end,
-  },
-  { "bakpakin/fennel.vim" },
-  { "Olical/conjure", tag = "v4.13.0", lazy = true },
   {
     "ghostty-macos",
     dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
