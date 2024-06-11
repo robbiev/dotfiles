@@ -14,7 +14,14 @@ return {
       vim.fn['fzf#install']()
     end,
   },
-  { "junegunn/fzf.vim" },
+  {
+    "junegunn/fzf.vim",
+    config = function()
+      vim.keymap.set("n", "<leader>b", ":Buffers<CR>", {noremap = true})
+      vim.keymap.set("n", "<leader>t", ":Tags<CR>", {noremap = true})
+      vim.keymap.set("n", "<leader>f", ":Files<CR>", {noremap = true})
+    end
+  },
   { "tpope/vim-commentary" },
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
@@ -23,8 +30,10 @@ return {
     -- :Rooter sets the working directory to the nearest project
     "airblade/vim-rooter",
     config = function()
-      vim.g.rooter_manual_only=1
+      vim.g.rooter_manual_only = 1
+      vim.g.rooter_change_directory_for_non_project_files = "current"
       vim.g.rooter_patterns={"Makefile", ".git/"}
+      vim.keymap.set("n", "<leader>r", ":Rooter<CR>", {noremap = true})
     end
   },
   { 
