@@ -16,22 +16,6 @@ vim.opt.smartcase = true
 vim.opt.gdefault = true
 vim.opt.showmatch = true
 
--- Cursor shape
--- https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode/30199177
--- Ps = 0  -> blinking block.
--- Ps = 1  -> blinking block (default).
--- Ps = 2  -> steady block.
--- Ps = 3  -> blinking underline.
--- Ps = 4  -> steady underline.
--- Ps = 5  -> blinking bar (xterm).
--- Ps = 6  -> steady bar (xterm).
--- insert mode
-vim.cmd [[let &t_SI="\e[5 q"]]
--- replace mode
-vim.cmd [[let &t_SR="\e[4 q"]]
--- normal mode
-vim.cmd [[let &t_EI="\e[1 q"]]
-
 vim.opt.timeout = false
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 10
