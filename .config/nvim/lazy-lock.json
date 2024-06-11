@@ -1,0 +1,19 @@
+{
+  "aniseed": { "branch": "master", "commit": "7bc09736f3651c10d29b82d1a465b7f540614be1" },
+  "conjure": { "branch": "master", "commit": "0aa1e8f78e8e0746a6026260f4d9a64a0bdfbf7a" },
+  "fennel.vim": { "branch": "master", "commit": "30b9beabad2c4f09b9b284caf5cd5666b6b4dc89" },
+  "fzf": { "branch": "master", "commit": "7fc13c5cfde55ae53c6f87290a80559fcc59bf0f" },
+  "fzf.vim": { "branch": "master", "commit": "279e1ec068f526e985ee7e3f62a71f083bbe0196" },
+  "lazy.nvim": { "branch": "main", "commit": "fafe1f7c640aed75e70a10e6649612cd96f39149" },
+  "vim-commentary": { "branch": "master", "commit": "c4b8f52cbb7142ec239494e5a2c4a512f92c4d07" },
+  "vim-go": { "branch": "master", "commit": "b5fc46841e818dc118abb5da650b00bd93355290" },
+  "vim-gutentags": { "branch": "master", "commit": "aa47c5e29c37c52176c44e61c780032dfacef3dd" },
+  "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
+  "vim-rooter": { "branch": "master", "commit": "45e53f01e4e1c4a3ee20814de232162713aff578" },
+  "vim-sexp": { "branch": "master", "commit": "14464d4580af43424ed8f2614d94e62bfa40bb4d" },
+  "vim-sexp-mappings-for-regular-people": { "branch": "master", "commit": "cc5923e357373ea6ef0c13eae82f44e6b9b1d374" },
+  "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },
+  "vim-solarized8": { "branch": "neovim", "commit": "cddfb6e61f4c92f22b1ddce7d60e32688d700ed8" },
+  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
+  "vim-venter": { "branch": "master", "commit": "8cbb93f912a85e320a3eaeee0b9ee5934043930a" }
+}
