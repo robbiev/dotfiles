@@ -47,9 +47,9 @@ vim.keymap.set("n", "<leader>w", ":w<cr>", {noremap = true})
 -- Type leader + leader to unhighlight
 vim.keymap.set("n", "<leader><leader>", ":noh<cr>", {noremap = true})
 
--- Paste from clipboard, alternative to :set paste to avoid messing up indentation
-vim.keymap.set("", "<leader>v", [["*p<cr>:exe ":echo \'pasted from clipboard\'"<cr>]], {})
-vim.keymap.set("", "<leader>c", [["*y<cr>:exe ":echo \'copied to clipboard\'"<cr>]], {})
+-- Interact with system clipboard
+vim.keymap.set("", "<leader>c", [["+y]])
+vim.keymap.set("", "<leader>v", [["+p]])
 
 -- Remove all trailing whitespace
 vim.keymap.set("", "<leader>s", ":%s/\\s\\+$//e<cr>", {})
