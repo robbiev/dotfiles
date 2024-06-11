@@ -15,17 +15,37 @@ return {
     end
   },
   {
-    "junegunn/fzf",
-    build = function()
-      vim.fn['fzf#install']()
-    end,
-  },
-  {
-    "junegunn/fzf.vim",
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      vim.keymap.set("n", "<leader>b", ":Buffers<CR>", {noremap = true})
-      vim.keymap.set("n", "<leader>t", ":Tags<CR>", {noremap = true})
-      vim.keymap.set("n", "<leader>f", ":Files<CR>", {noremap = true})
+      local builtin = require('telescope.builtin')
+      vim.keymap.set("n", "<leader>b", builtin.buffers, {noremap = true})
+      vim.keymap.set("n", "<leader>t", builtin.tags, {noremap = true})
+      vim.keymap.set("n", "<leader>f", builtin.find_files, {noremap = true})
+      vim.keymap.set("n", "<leader>g", builtin.live_grep, {noremap = true})
+      vim.keymap.set("n", "<leader>h", builtin.help_tags, {noremap = true})
+
+      require("telescope").setup({
+        defaults = {
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+            "--glob",
+            "!**/.git/*",
+          }
+        },
+        pickers = {
+          find_files = {
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          },
+        },
+      })
     end
   },
   {
