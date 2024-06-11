@@ -3,6 +3,7 @@ return {
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "tpope/vim-sleuth" },
+  { "github/copilot.vim" },
   { "ziglang/zig.vim" },
   { 
     "lifepillar/vim-solarized8",
