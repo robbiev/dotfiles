@@ -3,6 +3,7 @@ return {
   { "tpope/vim-surround" },
   { "tpope/vim-sleuth" },
   { "github/copilot.vim" },
+  { "lambdalisue/vim-suda" },
   { 
     "lifepillar/vim-solarized8",
     branch = "neovim",
