@@ -1,6 +1,4 @@
-# Need to force bash as the auto-detect doesn't work for it
-command = /usr/local/bin/bash
-shell-integration = bash
+command = /usr/local/bin/fish
 
 theme = "Builtin Solarized Dark"
 # Inverting seems to work better with Solarized
