@@ -1,5 +1,4 @@
 return {
-  { "tpope/vim-commentary" },
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "tpope/vim-sleuth" },
@@ -59,7 +58,13 @@ return {
   },
   {
     "fatih/vim-go",
+    -- TODO investigate alternatives
+    -- https://github.com/olexsmir/gopher.nvim
+    -- https://github.com/crispgm/nvim-go
+    -- https://github.com/ray-x/go.nvim
     config = function()
+      vim.g.go_gopls_enabled = 0
+
       vim.g.go_highlight_functions=1
       vim.g.go_highlight_methods=1
       vim.g.go_highlight_structs=1
