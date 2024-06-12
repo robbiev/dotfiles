@@ -3,7 +3,6 @@ return {
   { "tpope/vim-surround" },
   { "tpope/vim-sleuth" },
   { "github/copilot.vim" },
-  { "ziglang/zig.vim" },
   { 
     "lifepillar/vim-solarized8",
     branch = "neovim",
@@ -57,29 +56,22 @@ return {
     end
   },
   {
-    "fatih/vim-go",
-    -- TODO investigate alternatives
-    -- https://github.com/olexsmir/gopher.nvim
-    -- https://github.com/crispgm/nvim-go
-    -- https://github.com/ray-x/go.nvim
+    'stevearc/conform.nvim',
     config = function()
-      vim.g.go_gopls_enabled = 0
-
-      vim.g.go_highlight_functions=1
-      vim.g.go_highlight_methods=1
-      vim.g.go_highlight_structs=1
-      vim.g.go_fmt_command="goimports"
-      vim.g.go_fmt_options = {
-        goimports = "-local github.com/monzo",
+      local conform = require("conform")
+      conform.setup({
+        formatters_by_ft = {
+          go = { "goimports" },
+          zig = { "zigfmt" },
+        },
+        format_on_save = {
+          timeout_ms = 4000
+        },
+      })
+      conform.formatters.goimports = {
+        prepend_args = { "-local", "github.com/monzo" },
       }
-      vim.g.go_version_warning = 0
-      vim.g.go_def_mode = "gopls"
-      vim.g.go_info_mode = "gopls"
-
-      -- Fix losing fold state on save
-      -- https://github.com/fatih/vim-go/issues/502
-      vim.g.go_fmt_experimental = 1
-    end,
+    end
   },
   {
     "ghostty-macos",
@@ -89,4 +81,29 @@ return {
       return vim.fn.has('macunix') and vim.fn.executable("ghostty") == 1
     end,
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "vimdoc", "javascript", "typescript", "c", "lua",
+          "go", "gomod", "gosum", "bash", "zig",
+        },
+        -- brew install tree-sitter
+        auto_install = true,
+        indent = {
+          enable = true
+        },
+        highlight = {
+          enable = true
+        },
+      })
+    end
+  }
+  -- TODO investigate go plugins
+  -- https://github.com/fatih/vim-go
+  -- https://github.com/olexsmir/gopher.nvim
+  -- https://github.com/crispgm/nvim-go
+  -- https://github.com/ray-x/go.nvim
 }
