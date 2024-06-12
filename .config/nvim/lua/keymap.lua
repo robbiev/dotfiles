@@ -31,15 +31,33 @@ vim.keymap.set("n", "k", "gk", {noremap = true})
 -- Make Y behave like C or D
 vim.keymap.set("n", "Y", "y$", {noremap = true})
 
+-- Keep the cursor in place while joining lines
+-- Set a mark called z, join lines, go back to the mark
+vim.keymap.set("n", "J", "mzJ`z", {noremap = true})
+
 -- Keep selected text selected when fixing indentation
 vim.keymap.set("v", "<", "<gv", {noremap = true})
 vim.keymap.set("v", ">", ">gv", {noremap = true})
+
+-- Center on the current line after jumping
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+
+-- Move selected line(s) up or down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 --
 -- Leader key mappings
 --
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
+
+-- Delete into the black hole register to avoid clobbering the default register.
+vim.keymap.set({"n", "x"}, "<leader>d", [["_d]])
+
+-- In visual mode, delete into the black hole register and paste
+vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Write the current file
 vim.keymap.set("n", "<leader>w", ":w<cr>", {noremap = true})
@@ -58,7 +76,7 @@ vim.keymap.set("", "<leader>s", ":%s/\\s\\+$//e<cr>", {})
 vim.keymap.set("", "<leader>R", ":cd %:h<cr>", {})
 
 -- Open netrw
-vim.keymap.set("", "<leader>x", vim.cmd.Ex)
+vim.keymap.set("", "<leader>e", vim.cmd.Ex)
 
 --
 -- Usuful key mappings I always forget

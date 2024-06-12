@@ -40,3 +40,5 @@ vim.opt.tabstop = 2 -- width of tabs
 vim.opt.shiftwidth = 2 -- width of indent commands
 vim.opt.softtabstop = 2 -- amount of spaces to use, and fine-tune indent/outdent
 
+-- netrw
+vim.g.netrw_banner = 0
