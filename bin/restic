@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-if [[ -z "${OP_SESSION_my}" ]]; then
-  echo "log in to 1Password first (type '1p')"
+if [[ -z "${RESTIC_PASSWORD}" ]]; then
+  echo "Set RESTIC_PASSWORD environment variable"
   exit 1
 fi
-
-export RESTIC_PASSWORD=$(op get item restic | jq -r .details.password)
 
 /usr/local/bin/restic "$@"
