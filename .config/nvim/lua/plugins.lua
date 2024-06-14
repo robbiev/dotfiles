@@ -62,9 +62,11 @@ return {
           go = { "goimports" },
           zig = { "zigfmt" },
           lua = { "stylua" },
+          nix = { "alejandra" },
+          javascript = { "prettier" },
         },
         format_on_save = {
-          timeout_ms = 4000,
+          async = true,
         },
       })
       conform.formatters.goimports = {
