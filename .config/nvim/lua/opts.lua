@@ -20,9 +20,6 @@ vim.opt.timeout = false
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 10
 
--- Folds
-vim.opt.foldmethod = "indent"
-
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.undofile = true
