@@ -8,7 +8,7 @@ set -gx LS_OPTIONS '--color=auto'
 set -gx EDITOR nvim
 set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 set -gx HISTCONTROL ignoreboth
-set -gx PATH $HOME/bin $PATH
+set -gx PATH $HOME/bin $HOME/go/bin $PATH
 set -gx PIP_REQUIRE_VIRTUALENV true
 
 switch (uname)
