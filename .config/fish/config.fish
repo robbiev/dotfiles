@@ -1,7 +1,7 @@
 set -g fish_greeting
 
 if status is-interactive
-  fish_config theme choose "Solarized Dark"
+  fish_config theme choose "tokyonight-day"
 end
 
 set -gx LS_OPTIONS '--color=auto'
@@ -13,11 +13,9 @@ set -gx PIP_REQUIRE_VIRTUALENV true
 
 switch (uname)
   case Darwin
-    eval (gdircolors -c ~/.dir_colors)
     alias ls 'gls $LS_OPTIONS -hF'
     set -gx HOMEBREW_NO_ANALYTICS 1
   case Linux
-    eval (dircolors -c ~/.dir_colors)
     alias ls 'ls $LS_OPTIONS -hF'
 end
 

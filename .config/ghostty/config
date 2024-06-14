@@ -1,6 +1,6 @@
 command = /usr/local/bin/fish
 
-theme = "Builtin Solarized Dark"
+theme = "tokyonight-day"
 # Inverting seems to work better with Solarized
 selection-invert-fg-bg = true
 
@@ -20,5 +20,3 @@ keybind = super+ctrl+down=resize_split:down,30
 keybind = super+ctrl+up=resize_split:up,30
 keybind = super+ctrl+left=resize_split:left,30
 keybind = super+ctrl+right=resize_split:right,30
-
-

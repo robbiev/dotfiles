@@ -4,13 +4,10 @@ return {
   { "tpope/vim-sleuth" },
   { "github/copilot.vim" },
   { "lambdalisue/vim-suda" },
-  { 
-    "lifepillar/vim-solarized8",
-    branch = "neovim",
+  {
+    "folke/tokyonight.nvim",
     config = function()
-      vim.g.solarized_termtrans=1
-      vim.opt.background = "dark"
-      vim.cmd.colorscheme "solarized8"
+      vim.cmd.colorscheme "tokyonight-day"
     end
   },
   {
