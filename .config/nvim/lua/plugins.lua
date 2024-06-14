@@ -7,19 +7,19 @@ return {
   {
     "folke/tokyonight.nvim",
     config = function()
-      vim.cmd.colorscheme "tokyonight-day"
-    end
+      vim.cmd.colorscheme("tokyonight-day")
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      local builtin = require('telescope.builtin')
-      vim.keymap.set("n", "<leader>b", builtin.buffers, {noremap = true})
-      vim.keymap.set("n", "<leader>t", builtin.tags, {noremap = true})
-      vim.keymap.set("n", "<leader>f", builtin.find_files, {noremap = true})
-      vim.keymap.set("n", "<leader>g", builtin.live_grep, {noremap = true})
-      vim.keymap.set("n", "<leader>h", builtin.help_tags, {noremap = true})
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<leader>b", builtin.buffers, { noremap = true })
+      vim.keymap.set("n", "<leader>t", builtin.tags, { noremap = true })
+      vim.keymap.set("n", "<leader>f", builtin.find_files, { noremap = true })
+      vim.keymap.set("n", "<leader>g", builtin.live_grep, { noremap = true })
+      vim.keymap.set("n", "<leader>h", builtin.help_tags, { noremap = true })
 
       require("telescope").setup({
         defaults = {
@@ -34,7 +34,7 @@ return {
             "--hidden",
             "--glob",
             "!**/.git/*",
-          }
+          },
         },
         pickers = {
           find_files = {
@@ -42,41 +42,42 @@ return {
           },
         },
       })
-    end
+    end,
   },
   {
     "airblade/vim-rooter",
     config = function()
       vim.g.rooter_manual_only = 1
       vim.g.rooter_change_directory_for_non_project_files = "current"
-      vim.g.rooter_patterns={"Makefile", ".git/"}
-      vim.keymap.set("n", "<leader>r", ":Rooter<CR>", {noremap = true})
-    end
+      vim.g.rooter_patterns = { "Makefile", ".git/" }
+      vim.keymap.set("n", "<leader>r", ":Rooter<CR>", { noremap = true })
+    end,
   },
   {
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     config = function()
       local conform = require("conform")
       conform.setup({
         formatters_by_ft = {
           go = { "goimports" },
           zig = { "zigfmt" },
+          lua = { "stylua" },
         },
         format_on_save = {
-          timeout_ms = 4000
+          timeout_ms = 4000,
         },
       })
       conform.formatters.goimports = {
         prepend_args = { "-local", "github.com/monzo" },
       }
-    end
+    end,
   },
   {
     "ghostty-macos",
     dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
     lazy = false,
     cond = function()
-      return vim.fn.has('macunix') and vim.fn.executable("ghostty") == 1
+      return vim.fn.has("macunix") and vim.fn.executable("ghostty") == 1
     end,
   },
   {
@@ -85,20 +86,28 @@ return {
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
-          "vimdoc", "javascript", "typescript", "c", "lua",
-          "go", "gomod", "gosum", "bash", "zig",
+          "vimdoc",
+          "javascript",
+          "typescript",
+          "c",
+          "lua",
+          "go",
+          "gomod",
+          "gosum",
+          "bash",
+          "zig",
         },
         -- brew install tree-sitter
         auto_install = true,
         indent = {
-          enable = true
+          enable = true,
         },
         highlight = {
-          enable = true
+          enable = true,
         },
       })
-    end
-  }
+    end,
+  },
   -- TODO investigate go plugins
   -- https://github.com/fatih/vim-go
   -- https://github.com/olexsmir/gopher.nvim

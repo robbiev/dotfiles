@@ -1,14 +1,14 @@
 -- easier window split navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", {noremap = true})
-vim.keymap.set("n", "<C-j>", "<C-w>j", {noremap = true})
-vim.keymap.set("n", "<C-k>", "<C-w>k", {noremap = true})
-vim.keymap.set("n", "<C-l>", "<C-w>l", {noremap = true})
+vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true })
 
 -- Resize windows using arrow keys
-vim.keymap.set("n", "<left>", ":vertical resize -10<cr>", {noremap = true})
-vim.keymap.set("n", "<down>", ":resize +10<cr>", {noremap = true})
-vim.keymap.set("n", "<up>", ":resize -10<cr>", {noremap = true})
-vim.keymap.set("n", "<right>", ":vertical resize +10<cr>", {noremap = true})
+vim.keymap.set("n", "<left>", ":vertical resize -10<cr>", { noremap = true })
+vim.keymap.set("n", "<down>", ":resize +10<cr>", { noremap = true })
+vim.keymap.set("n", "<up>", ":resize -10<cr>", { noremap = true })
+vim.keymap.set("n", "<right>", ":vertical resize +10<cr>", { noremap = true })
 
 -- Hack to push the buffer text to the right when editing files on a large monitor.
 -- This is a simple alternative to various zen mode plugins.
@@ -25,19 +25,19 @@ vim.keymap.set("", "<localleader><down>", function()
 end)
 
 -- Treat wrapped lines as new lines
-vim.keymap.set("n", "j", "gj", {noremap = true})
-vim.keymap.set("n", "k", "gk", {noremap = true})
+vim.keymap.set("n", "j", "gj", { noremap = true })
+vim.keymap.set("n", "k", "gk", { noremap = true })
 
 -- Make Y behave like C or D
-vim.keymap.set("n", "Y", "y$", {noremap = true})
+vim.keymap.set("n", "Y", "y$", { noremap = true })
 
 -- Keep the cursor in place while joining lines
 -- Set a mark called z, join lines, go back to the mark
-vim.keymap.set("n", "J", "mzJ`z", {noremap = true})
+vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
 
 -- Keep selected text selected when fixing indentation
-vim.keymap.set("v", "<", "<gv", {noremap = true})
-vim.keymap.set("v", ">", ">gv", {noremap = true})
+vim.keymap.set("v", "<", "<gv", { noremap = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true })
 
 -- Center on the current line after jumping
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -54,16 +54,16 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
 -- Delete into the black hole register to avoid clobbering the default register.
-vim.keymap.set({"n", "x"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]])
 
 -- In visual mode, delete into the black hole register and paste
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Write the current file
-vim.keymap.set("n", "<leader>w", ":w<cr>", {noremap = true})
+vim.keymap.set("n", "<leader>w", ":w<cr>", { noremap = true })
 
 -- Type leader + leader to unhighlight
-vim.keymap.set("n", "<leader><leader>", ":noh<cr>", {noremap = true})
+vim.keymap.set("n", "<leader><leader>", ":noh<cr>", { noremap = true })
 
 -- Interact with system clipboard
 vim.keymap.set("", "<leader>c", [["+y]])

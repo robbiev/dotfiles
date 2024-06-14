@@ -6,7 +6,7 @@ vim.opt.scrolloff = 3
 vim.opt.showmode = false
 
 -- no preview window when omnicompleting
--- only insert the longest common match, not just the first one 
+-- only insert the longest common match, not just the first one
 -- makes it easy to refine the search by typing
 vim.opt.completeopt = "menu,longest"
 vim.opt.wildmode = "list:longest"
@@ -22,13 +22,12 @@ vim.opt.ttimeoutlen = 10
 
 -- Folds
 vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 1
 
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.undofile = true
 
- -- wrap lines with sensible line break locations
+-- wrap lines with sensible line break locations
 vim.opt.wrap = true
 vim.opt.linebreak = true
 
