@@ -5,6 +5,46 @@ return {
   { "github/copilot.vim" },
   { "lambdalisue/vim-suda" },
   {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-copilot",
+    },
+    enabled = false,
+    config = function()
+      local cmp = require("cmp")
+      local cmp_select = { behavior = cmp.SelectBehavior.Select }
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            vim.snippet.expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+          ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-space>"] = cmp.mapping.complete(),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lua" },
+        }, {
+          { name = "buffer" },
+        }),
+        formatting = {
+          format = function(entry, vim_item)
+            vim_item.menu = ({
+              nvim_lua = "[Neovim]",
+              buffer = "[Buffer]",
+            })[entry.source.name]
+            return vim_item
+          end,
+        },
+      })
+    end,
+  },
+  {
     "folke/tokyonight.nvim",
     config = function()
       vim.cmd.colorscheme("tokyonight-day")
@@ -65,9 +105,7 @@ return {
           nix = { "alejandra" },
           javascript = { "prettier" },
         },
-        format_on_save = {
-          async = true,
-        },
+        format_after_save = {},
       })
       conform.formatters.goimports = {
         prepend_args = { "-local", "github.com/monzo" },
