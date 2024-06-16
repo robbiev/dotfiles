@@ -7,15 +7,16 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-copilot",
     },
-    enabled = false,
+    enabled = true,
     config = function()
       local cmp = require("cmp")
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
       cmp.setup({
+        completion = {
+          autocomplete = false,
+        },
         snippet = {
           expand = function(args)
             vim.snippet.expand(args.body)
@@ -25,12 +26,10 @@ return {
           ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
           ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-space>"] = cmp.mapping.complete(),
+          ["<Tab>"] = cmp.mapping.complete(),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lua" },
-        }, {
-          { name = "buffer" },
         }),
         formatting = {
           format = function(entry, vim_item)
