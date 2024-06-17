@@ -33,3 +33,6 @@ nnoremap <C-l> <C-w>l
 
 " Requires the Wrap to Column plugin
 vmap gq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
+
+" Load machine specific config
+source ~/.machineconfig/ideavim/ideavimrc
