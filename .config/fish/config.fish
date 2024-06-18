@@ -19,10 +19,6 @@ switch (uname)
     alias ls 'ls $LS_OPTIONS -hF'
 end
 
-if type -q fzf
-  fzf --fish | source
-end
-
 if test -r ~/.asdf/asdf.fish
   source ~/.asdf/asdf.fish
   mkdir -p ~/.config/fish/completions
@@ -37,4 +33,8 @@ alias cwdiff 'wdiff -n -w \'\033[30;41m\' -x \'\033[0m\' -y \'\033[30;42m\' -z \
 
 if test -r $HOME/.machineconfig/fish/config.fish
   source $HOME/.machineconfig/fish/config.fish
+end
+
+if type -q fzf
+  fzf --fish | source
 end
