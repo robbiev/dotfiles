@@ -1,7 +1,6 @@
 return {
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
-  { "tpope/vim-sleuth" },
   { "github/copilot.vim" },
   { "lambdalisue/vim-suda" },
   {
@@ -50,39 +49,58 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    "ibhagwan/fzf-lua",
     config = function()
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>b", builtin.buffers, { noremap = true })
-      vim.keymap.set("n", "<leader>t", builtin.tags, { noremap = true })
-      vim.keymap.set("n", "<leader>f", builtin.find_files, { noremap = true })
-      vim.keymap.set("n", "<leader>g", builtin.live_grep, { noremap = true })
-      vim.keymap.set("n", "<leader>h", builtin.help_tags, { noremap = true })
-
-      require("telescope").setup({
-        defaults = {
-          vimgrep_arguments = {
-            "rg",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            "--hidden",
-            "--glob",
-            "!**/.git/*",
-          },
+      require("fzf-lua").setup({
+        "telescope",
+        winopts = {
+          fullscreen = true,
         },
-        pickers = {
-          find_files = {
-            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-          },
+        files = {
+          cwd_prompt = false,
         },
       })
+      vim.keymap.set("n", "<leader>b", require("fzf-lua").buffers, { noremap = true })
+      vim.keymap.set("n", "<leader>t", require("fzf-lua").tags, { noremap = true })
+      vim.keymap.set("n", "<leader>f", require("fzf-lua").files, { noremap = true })
+      vim.keymap.set("n", "<leader>g", require("fzf-lua").live_grep_native, { noremap = true })
     end,
   },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     local builtin = require("telescope.builtin")
+  --     vim.keymap.set("n", "<leader>b", builtin.buffers, { noremap = true })
+  --     vim.keymap.set("n", "<leader>t", builtin.tags, { noremap = true })
+  --     vim.keymap.set("n", "<leader>f", builtin.find_files, { noremap = true })
+  --     vim.keymap.set("n", "<leader>g", builtin.live_grep, { noremap = true })
+  --     vim.keymap.set("n", "<leader>h", builtin.help_tags, { noremap = true })
+  --
+  --     require("telescope").setup({
+  --       defaults = {
+  --         vimgrep_arguments = {
+  --           "rg",
+  --           "--color=never",
+  --           "--no-heading",
+  --           "--with-filename",
+  --           "--line-number",
+  --           "--column",
+  --           "--smart-case",
+  --           "--hidden",
+  --           "--glob",
+  --           "!**/.git/*",
+  --         },
+  --       },
+  --       pickers = {
+  --         find_files = {
+  --           find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+  --         },
+  --       },
+  --     })
+  --
+  --   end,
+  -- },
   {
     "airblade/vim-rooter",
     config = function()
@@ -101,8 +119,11 @@ return {
           go = { "goimports" },
           zig = { "zigfmt" },
           lua = { "stylua" },
+          terraform = { "terraform_fmt" },
           nix = { "alejandra" },
           javascript = { "prettier" },
+          python = { "ruff_format", "ruff_organize_imports" },
+          rust = { "rustfmt" },
         },
         format_after_save = {},
       })

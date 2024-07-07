@@ -43,14 +43,6 @@ switch (uname)
     alias ls 'ls $LS_OPTIONS -hF'
 end
 
-if test -r ~/.asdf/asdf.fish
-  source ~/.asdf/asdf.fish
-  mkdir -p ~/.config/fish/completions
-  if not test -f ~/.config/fish/completions/asdf.fish
-    ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
-  end
-end
-
 alias vi nvim
 alias vim nvim
 alias cwdiff 'wdiff -n -w \'\033[30;41m\' -x \'\033[0m\' -y \'\033[30;42m\' -z \'\033[0m\''
@@ -61,4 +53,12 @@ end
 
 if type -q fzf
   fzf --fish | source
+end
+
+if test -r ~/.asdf/asdf.fish
+  source ~/.asdf/asdf.fish
+  mkdir -p ~/.config/fish/completions
+  if not test -f ~/.config/fish/completions/asdf.fish
+    ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+  end
 end
