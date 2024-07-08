@@ -41,3 +41,7 @@ vim.g.editorconfig = false
 
 -- netrw
 vim.g.netrw_banner = 0
+
+-- security
+vim.opt.secure = true
+vim.opt.modeline = false
