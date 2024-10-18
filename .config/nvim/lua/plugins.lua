@@ -4,45 +4,6 @@ return {
   { "github/copilot.vim" },
   { "lambdalisue/vim-suda" },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lua",
-    },
-    enabled = true,
-    config = function()
-      local cmp = require("cmp")
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
-      cmp.setup({
-        completion = {
-          autocomplete = false,
-        },
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-          ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-space>"] = cmp.mapping.complete(),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lua" },
-        }),
-        formatting = {
-          format = function(entry, vim_item)
-            vim_item.menu = ({
-              nvim_lua = "[Neovim]",
-              buffer = "[Buffer]",
-            })[entry.source.name]
-            return vim_item
-          end,
-        },
-      })
-    end,
-  },
-  {
     "folke/tokyonight.nvim",
     config = function()
       vim.cmd.colorscheme("tokyonight-day")
@@ -201,9 +162,28 @@ return {
       })
     end,
   },
-  -- TODO investigate go plugins
-  -- https://github.com/fatih/vim-go
-  -- https://github.com/olexsmir/gopher.nvim
-  -- https://github.com/crispgm/nvim-go
-  -- https://github.com/ray-x/go.nvim
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local on_attach = function(client, bufnr)
+        local opts = { noremap = true, silent = true }
+
+        vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-Space>", "<C-x><C-o>", opts)
+
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>FzfLua lsp_references<cr>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<F1>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+        client.server_capabilities.document_formatting = false
+      end
+
+      local lspconfig = require("lspconfig")
+      lspconfig.gopls.setup({ on_attach = on_attach })
+      lspconfig.zls.setup({ on_attach = on_attach })
+    end,
+  },
 }

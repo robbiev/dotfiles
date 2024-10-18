@@ -62,3 +62,7 @@ if test -r ~/.asdf/asdf.fish
     ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
   end
 end
+
+if type -q mise
+  mise activate fish | source
+end
