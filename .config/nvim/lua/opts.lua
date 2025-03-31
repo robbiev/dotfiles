@@ -5,10 +5,9 @@ vim.opt.scrolloff = 3
 -- https://github.com/fatih/vim-go/pull/685
 vim.opt.showmode = false
 
--- no preview window when omnicompleting
--- only insert the longest common match, not just the first one
--- makes it easy to refine the search by typing
-vim.opt.completeopt = "menu,longest"
+vim.opt.completeopt = "menu,noselect,popup,fuzzy"
+vim.opt.winborder = "rounded"
+
 vim.opt.wildmode = "list:longest"
 
 vim.opt.ignorecase = true

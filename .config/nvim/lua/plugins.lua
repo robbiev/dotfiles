@@ -162,28 +162,4 @@ return {
       })
     end,
   },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      local on_attach = function(client, bufnr)
-        local opts = { noremap = true, silent = true }
-
-        vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-Space>", "<C-x><C-o>", opts)
-
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>FzfLua lsp_references<cr>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<F1>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-        client.server_capabilities.document_formatting = false
-      end
-
-      local lspconfig = require("lspconfig")
-      lspconfig.gopls.setup({ on_attach = on_attach })
-      lspconfig.zls.setup({ on_attach = on_attach })
-    end,
-  },
 }

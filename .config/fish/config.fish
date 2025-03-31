@@ -55,14 +55,6 @@ if type -q fzf
   fzf --fish | source
 end
 
-if test -r ~/.asdf/asdf.fish
-  source ~/.asdf/asdf.fish
-  mkdir -p ~/.config/fish/completions
-  if not test -f ~/.config/fish/completions/asdf.fish
-    ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
-  end
-end
-
 if type -q mise
   mise activate fish | source
 end

@@ -18,3 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
   local_spec = false,
 })
+
+vim.lsp.enable({ "gopls", "zls" })
+
+vim.diagnostic.config({
+  virtual_text = { current_line = true },
+})
