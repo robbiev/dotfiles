@@ -2,7 +2,6 @@ return {
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "github/copilot.vim" },
-  { "lambdalisue/vim-suda" },
   {
     "folke/tokyonight.nvim",
     config = function()
@@ -93,6 +92,34 @@ return {
     end,
   },
   {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "vimdoc",
+          "javascript",
+          "typescript",
+          "c",
+          "lua",
+          "go",
+          "gomod",
+          "gosum",
+          "bash",
+          "zig",
+        },
+        -- brew install tree-sitter
+        auto_install = true,
+        indent = {
+          enable = true,
+        },
+        highlight = {
+          enable = true,
+        },
+      })
+    end,
+  },
+  {
     "wearedev",
     dir = "~/src/github.com/monzo/wearedev/tools/editors/nvim/nvim-monzo",
     cond = function(plugin)
@@ -124,41 +151,6 @@ return {
           vim.fn.setpos(".", { vim.api.nvim_get_current_buf(), tonumber(file_dst_line), tonumber(file_dst_col), 0 })
           vim.cmd("normal! zz")
         end,
-      })
-    end,
-  },
-  {
-    "ghostty-macos",
-    dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
-    cond = function()
-      return vim.fn.has("macunix") and vim.fn.executable("ghostty") == 1
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "vimdoc",
-          "javascript",
-          "typescript",
-          "c",
-          "lua",
-          "go",
-          "gomod",
-          "gosum",
-          "bash",
-          "zig",
-        },
-        -- brew install tree-sitter
-        auto_install = true,
-        indent = {
-          enable = true,
-        },
-        highlight = {
-          enable = true,
-        },
       })
     end,
   },
