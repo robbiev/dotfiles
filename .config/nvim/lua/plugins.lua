@@ -3,9 +3,62 @@ return {
   { "tpope/vim-surround" },
   { "github/copilot.vim" },
   {
-    "folke/tokyonight.nvim",
+    "airblade/vim-rooter",
     config = function()
-      vim.cmd.colorscheme("tokyonight-day")
+      vim.g.rooter_manual_only = 1
+      vim.g.rooter_change_directory_for_non_project_files = "current"
+      vim.g.rooter_patterns = { "Makefile", ".git/" }
+      vim.keymap.set("n", "<leader>r", ":Rooter<CR>", { noremap = true })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "vimdoc",
+          "javascript",
+          "typescript",
+          "c",
+          "lua",
+          "go",
+          "gomod",
+          "gosum",
+          "bash",
+          "zig",
+        },
+        -- brew install tree-sitter
+        auto_install = true,
+        indent = {
+          enable = true,
+        },
+        highlight = {
+          enable = false,
+        },
+      })
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    config = function()
+      local conform = require("conform")
+      conform.setup({
+        formatters_by_ft = {
+          go = { "goimports" },
+          zig = { "zigfmt" },
+          lua = { "stylua" },
+          terraform = { "terraform_fmt" },
+          nix = { "alejandra" },
+          javascript = { "prettier" },
+          python = { "ruff_format", "ruff_organize_imports" },
+          rust = { "rustfmt" },
+        },
+        format_after_save = {},
+      })
+      conform.formatters.goimports = {
+        prepend_args = { "-local", "github.com/monzo" },
+      }
     end,
   },
   {
@@ -56,65 +109,6 @@ return {
           find_files = {
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
           },
-        },
-      })
-    end,
-  },
-  {
-    "airblade/vim-rooter",
-    config = function()
-      vim.g.rooter_manual_only = 1
-      vim.g.rooter_change_directory_for_non_project_files = "current"
-      vim.g.rooter_patterns = { "Makefile", ".git/" }
-      vim.keymap.set("n", "<leader>r", ":Rooter<CR>", { noremap = true })
-    end,
-  },
-  {
-    "stevearc/conform.nvim",
-    config = function()
-      local conform = require("conform")
-      conform.setup({
-        formatters_by_ft = {
-          go = { "goimports" },
-          zig = { "zigfmt" },
-          lua = { "stylua" },
-          terraform = { "terraform_fmt" },
-          nix = { "alejandra" },
-          javascript = { "prettier" },
-          python = { "ruff_format", "ruff_organize_imports" },
-          rust = { "rustfmt" },
-        },
-        format_after_save = {},
-      })
-      conform.formatters.goimports = {
-        prepend_args = { "-local", "github.com/monzo" },
-      }
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "vimdoc",
-          "javascript",
-          "typescript",
-          "c",
-          "lua",
-          "go",
-          "gomod",
-          "gosum",
-          "bash",
-          "zig",
-        },
-        -- brew install tree-sitter
-        auto_install = true,
-        indent = {
-          enable = true,
-        },
-        highlight = {
-          enable = true,
         },
       })
     end,

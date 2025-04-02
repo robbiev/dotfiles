@@ -42,6 +42,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     client.server_capabilities.document_formatting = false
+    client.server_capabilities.semanticTokensProvider = nil
 
     local opts = { noremap = true, silent = true }
 

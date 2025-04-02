@@ -1,3 +1,5 @@
+vim.cmd("syntax off")
+
 require("keymap")
 require("opts")
 require("autocmd")
@@ -22,5 +24,6 @@ require("lazy").setup("plugins", {
 vim.lsp.enable({ "gopls", "zls" })
 
 vim.diagnostic.config({
+  signs = false, -- Disable the signs in the gutter/sign column
   virtual_text = { current_line = true },
 })
