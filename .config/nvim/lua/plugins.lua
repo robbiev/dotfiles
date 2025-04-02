@@ -2,6 +2,8 @@ return {
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "github/copilot.vim" },
+  { "tpope/vim-fugitive" },
+  { "tpope/vim-rhubarb" },
   {
     "airblade/vim-rooter",
     config = function()

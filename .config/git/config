@@ -18,7 +18,7 @@
   allbranches = ! git branch --sort=committerdate
   b = branch --show-current
   st = -c color.status=always status -sb
-  snw = ! git -c color.status=always status -sb | nw
+  snw = ! git -c color.status=always status -sb | numberwang
   co = checkout
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   prdiff = ! git diff $(git merge-base --fork-point master)
