@@ -31,7 +31,9 @@ set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
   --color=separator:#b15c00 \
   --color=spinner:#d20065 \
 "
-set -gx PATH $HOME/bin $HOME/go/bin $PATH
+
+# $HOME/.local/bin for tools installed with "uv"
+set -gx PATH $HOME/.local/bin $HOME/bin $HOME/go/bin $PATH
 set -gx PIP_REQUIRE_VIRTUALENV true
 
 switch (uname)
