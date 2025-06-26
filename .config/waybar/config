@@ -1,0 +1,59 @@
+{
+    "layer": "bottom",
+    "height": 30,
+    "spacing": 4, // px
+    "modules-left": ["cpu", "memory", "custom/gpu-usage", "custom/gpu-temp"],
+    "modules-center": ["power-profiles-daemon", "pulseaudio"],
+    "modules-right": ["tray", "idle_inhibitor", "clock"],
+    "cpu": {
+      "format": "CPU {usage}%",
+      "tooltip": false
+    },
+    "custom/gpu-usage": {
+      "exec": "cat /sys/class/hwmon/hwmon0/device/gpu_busy_percent",
+      "format": "GPU: {}%",
+      "return-type": "",
+      "interval": 5, 
+    },
+    "custom/gpu-temp": {
+      "exec": "sensors -j | jq -j '.\"amdgpu-pci-0300\".junction.temp2_input' | xargs printf \"%'.0f\"",
+      "format": "{} deg",
+      "return-type": "",
+      "interval": 5,
+      "tooltip": false
+    },
+    "memory": {
+      "format": "Mem {}%"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+        "format-muted": "󰝟 {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "tray": {
+      "spacing": 10
+    },
+    "clock": {
+      "tooltip": false
+    }
+}
