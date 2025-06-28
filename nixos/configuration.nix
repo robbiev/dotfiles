@@ -10,12 +10,23 @@
       ./hardware-configuration.nix
     ];
 
+  # noatime: Prevents the system from writing the access time to files every time they are read. Reduces write amplification on the SSD.
+  # discard: Enables continuous TRIM. This tells the SSD when blocks are free, allowing it to manage its storage efficiently.
+  fileSystems."/" = {
+    options = [ "noatime" ];
+  };
+  services.fstrim.enable = true; # recommended instead of the "discard" mount option on ext4 (runs weekly by default)
+  services.fstrim.interval = "weekly";
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Basic FIFO queue for I/O scheduling supposedly works well with SSDs
+  boot.kernelParams = [ "elevator=noop" ];
 
   networking.hostName = "neo"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -33,6 +44,8 @@
 
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true; # xbox controller
+  #boot.blacklistedKernelModules = [ "xpad" "xpad_noone" ];
+  #hardware.xone.enable = true; # xbox controller
 
   # GPU
   hardware.graphics = {
@@ -317,6 +330,16 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Delete unused things from the nix store
+  nix.gc = {
+    automatic = true;
+    dates = "weekly"; # Or "daily"
+    options = "--delete-older-than 30d"; # Keep generations for 30 days
+  };
+
+  # Optimise nix store disk usage store automatically
+  nix.optimise.automatic = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -324,5 +347,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
