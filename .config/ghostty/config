@@ -1,4 +1,4 @@
-command = /usr/local/bin/fish
+#command = /usr/local/bin/fish
 
 theme = "tokyonight-day"
 # Inverting seems to work better with Solarized
@@ -7,8 +7,8 @@ selection-invert-fg-bg = true
 background-opacity = .95
 background-blur-radius = 20
 
-font-family = "JetBrains Mono"
-font-size = 16
+font-family = "UbuntuSansMono Nerd Font Mono"
+font-size = 12
 
 mouse-hide-while-typing = false
 

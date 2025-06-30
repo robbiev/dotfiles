@@ -13,6 +13,15 @@ return {
     end,
   },
   {
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup({
+        extra_scp_args = { "-O" }, -- Use the legacy SCP protocol for now, as I have some old servers
+      })
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
@@ -58,7 +67,7 @@ return {
         format_after_save = {},
       })
       conform.formatters.goimports = {
-        prepend_args = { "-local", "github.com/monzo" },
+        prepend_args = { "-local", "github.com/robbiev" },
       }
     end,
   },

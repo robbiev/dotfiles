@@ -76,7 +76,7 @@ vim.keymap.set("", "<leader>s", ":%s/\\s\\+$//e<cr>", {})
 vim.keymap.set("", "<leader>R", ":cd %:h<cr>", {})
 
 -- Open netrw
-vim.keymap.set("", "-", vim.cmd.Ex)
+-- vim.keymap.set("", "-", vim.cmd.Ex)
 
 --
 -- Usuful key mappings I always forget
