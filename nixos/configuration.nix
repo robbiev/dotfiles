@@ -28,6 +28,9 @@
   # Basic FIFO queue for I/O scheduling supposedly works well with SSDs
   boot.kernelParams = [ "elevator=noop" ];
 
+  # Keep max 10 NixOS generations
+  boot.loader.systemd-boot.configurationLimit = 10;
+
   networking.hostName = "neo"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -65,6 +68,8 @@
   
   # GPU monitoring tools
   environment.systemPackages = with pkgs; [
+    git # ensure git is available for nix flakes
+
     amdgpu_top
     lm_sensors # Temperature sensors
     libva-utils  # For vainfo
@@ -79,11 +84,6 @@
     wineWowPackages.stableFull
     winetricks
     gamescope
-
-  #     gdk-pixbuf
-  # librsvg
-  # gtk3
-  # shared-mime-info
 
     xsel
     xorg.xlsclients
@@ -339,6 +339,8 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Delete unused things from the nix store
   nix.gc = {
