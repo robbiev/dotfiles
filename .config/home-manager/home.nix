@@ -54,9 +54,7 @@
     fish
     fishPlugins.bass
 
-    (google-cloud-sdk.withExtraComponents [
-      google-cloud-sdk.components.config-connector
-    ])
+    tailscale
   ];
 
   # Apps like Ghostty require a GTK theme for icons
