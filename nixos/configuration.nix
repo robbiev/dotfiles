@@ -1,19 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # noatime: Prevents the system from writing the access time to files every time they are read. Reduces write amplification on the SSD.
   # discard: Enables continuous TRIM. This tells the SSD when blocks are free, allowing it to manage its storage efficiently.
   fileSystems."/" = {
-    options = [ "noatime" ];
+    options = ["noatime"];
   };
   services.fstrim.enable = true; # recommended instead of the "discard" mount option on ext4 (runs weekly by default)
   services.fstrim.interval = "weekly";
@@ -26,7 +28,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Basic FIFO queue for I/O scheduling supposedly works well with SSDs
-  boot.kernelParams = [ "elevator=noop" ];
+  boot.kernelParams = ["elevator=noop"];
 
   # Keep max 10 NixOS generations
   boot.loader.systemd-boot.configurationLimit = 10;
@@ -65,17 +67,17 @@
     #   driversi686Linux.mesa
     # ];
   };
-  
+
   # GPU monitoring tools
   environment.systemPackages = with pkgs; [
     git # ensure git is available for nix flakes
 
     amdgpu_top
     lm_sensors # Temperature sensors
-    libva-utils  # For vainfo
-    vdpauinfo    # For vdpauinfo
+    libva-utils # For vainfo
+    vdpauinfo # For vdpauinfo
     vulkan-tools # For vulkaninfo
-    mesa-demos   # For glxinfo
+    mesa-demos # For glxinfo
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
@@ -108,16 +110,16 @@
     blueman
 
     door-knocker # test app for xdg portals
-    ashpd-demo   # test app for xdg portals
+    ashpd-demo # test app for xdg portals
 
     guvcview # test webcam
   ];
 
   # Start when uwsm / niri start
-  systemd.user.services.mako.wantedBy = [ "graphical-session.target" ];
-  systemd.user.services.waybar.wantedBy = [ "graphical-session.target" ];
-  systemd.user.services.xwayland-satellite.wantedBy = [ "graphical-session.target" ];
-  
+  systemd.user.services.mako.wantedBy = ["graphical-session.target"];
+  systemd.user.services.waybar.wantedBy = ["graphical-session.target"];
+  systemd.user.services.xwayland-satellite.wantedBy = ["graphical-session.target"];
+
   # Enable hardware sensors
   # hardware.sensor.hddtemp.enable = true;
 
@@ -142,21 +144,21 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-    serif = [ "DejaVu Serif" "Symbols Nerd Font" ];
-    sansSerif = [ "DejaVu Sans" "Symbols Nerd Font" ];
-    monospace = [ "UbuntuSansMono Nerd Font Mono" ];
-    emoji = [ "Noto Color Emoji" ];
-  };
-	#antialias = true;
-        # hinting = {
-        #   enable = true;
-        #   style = "full";
-        #   autohint = false;
-        # };
-        # subpixel = {
-        #   rgba = "none";
-        #   lcdfilter = "default";
-        # };
+      serif = ["DejaVu Serif" "Symbols Nerd Font"];
+      sansSerif = ["DejaVu Sans" "Symbols Nerd Font"];
+      monospace = ["UbuntuSansMono Nerd Font Mono"];
+      emoji = ["Noto Color Emoji"];
+    };
+    #antialias = true;
+    # hinting = {
+    #   enable = true;
+    #   style = "full";
+    #   autohint = false;
+    # };
+    # subpixel = {
+    #   rgba = "none";
+    #   lcdfilter = "default";
+    # };
   };
 
   #fonts.fontconfig.useEmbeddedBitmaps = true;
@@ -244,7 +246,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
 
-    # 
+    #
     config = {
       # override defaults at /run/current-system/sw/share/xdg-desktop-portal/*
       # with new files in /etc/xdg/xdg-desktop-portal/*
@@ -286,7 +288,7 @@
     #media-session.enable = true;
   };
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = ["amdgpu"];
   #services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable libinput support for modern input handling
@@ -296,14 +298,14 @@
   users.users.robbiev = {
     isNormalUser = true;
     description = "Robbie Vanbrabant";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
   };
 
   environment.sessionVariables = {
     # Force hardware acceleration
     LIBVA_DRIVER_NAME = "radeonsi";
     VDPAU_DRIVER = "radeonsi";
-    
+
     # Mesa variables
     AMD_VULKAN_ICD = "RADV"; # as opposed to AMDVLK
     #VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
@@ -340,7 +342,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Delete unused things from the nix store
   nix.gc = {
