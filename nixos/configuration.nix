@@ -105,7 +105,7 @@
     xwayland-satellite
     pantheon.pantheon-agent-polkit # test by running `pkexec whoami`
 
-    x11_ssh_askpass
+    #x11_ssh_askpass
 
     blueman
 
@@ -217,9 +217,9 @@
 
   # Whether interactive shells should show which Nix package (if any) provides a missing command.
   programs.command-not-found.enable = true;
-  programs.ssh.startAgent = true;
-  programs.ssh.enableAskPassword = true;
-  programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
+  #programs.ssh.startAgent = true;
+  #programs.ssh.enableAskPassword = true;
+  #programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
 
   #programs.waybar.enable = true;
   #programs.mako.enable = true;
@@ -313,7 +313,7 @@
     #VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
     VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
 
-    SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
+    #SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   };
 
   # Enable automatic login for the user.

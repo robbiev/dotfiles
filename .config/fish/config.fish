@@ -60,3 +60,16 @@ end
 if type -q mise
   mise activate fish | source
 end
+
+if type -q keychain
+  keychain --quiet
+  if test -f ~/.keychain/(hostname)-fish
+    source ~/.keychain/(hostname)-fish
+  end
+end
+
+if type -q bass
+  if test -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+    bass source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  end
+end

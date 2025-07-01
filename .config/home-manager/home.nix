@@ -49,6 +49,11 @@
     ruff
     rustfmt
 
+    x11_ssh_askpass
+    keychain # use this to manage the ssh agent
+    fish
+    fishPlugins.bass
+
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.config-connector
     ])
@@ -61,6 +66,11 @@
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
     };
+  };
+
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
   };
 
   xdg.desktopEntries = {
@@ -110,6 +120,7 @@
   #  /etc/profiles/per-user/robbiev/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+    SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   };
 
   # Let Home Manager install and manage itself.
