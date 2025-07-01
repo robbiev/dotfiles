@@ -295,10 +295,12 @@
   services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.fish.enable = true;
   users.users.robbiev = {
     isNormalUser = true;
     description = "Robbie Vanbrabant";
     extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.fish;
   };
 
   environment.sessionVariables = {
