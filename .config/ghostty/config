@@ -1,7 +1,6 @@
 #command = /usr/local/bin/fish
 
 theme = "tokyonight-day"
-# Inverting seems to work better with Solarized
 selection-invert-fg-bg = true
 
 background-opacity = .95

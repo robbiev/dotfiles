@@ -23,7 +23,17 @@
     firefox-wayland
 
     neovim
-    ghostty
+
+    # Workaround for kernel 6.15.4
+    # https://github.com/ghostty-org/ghostty/discussions/7720
+    (ghostty.overrideAttrs (_: {
+      preBuild = ''
+        shopt -s globstar
+        sed -i 's/^const xev = @import("xev");$/const xev = @import("xev").Epoll;/' **/*.zig
+        shopt -u globstar
+      '';
+    }))
+    foot
 
     signal-desktop
     bitwarden-desktop
@@ -43,6 +53,15 @@
       google-cloud-sdk.components.config-connector
     ])
   ];
+
+  # Apps like Ghostty require a GTK theme for icons
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+  };
 
   xdg.desktopEntries = {
     # Signal needs the tray icon to be able to show the window on Wayland
