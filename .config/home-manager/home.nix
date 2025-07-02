@@ -53,8 +53,6 @@
     keychain # use this to manage the ssh agent
     fish
     fishPlugins.bass
-
-    tailscale
   ];
 
   # Apps like Ghostty require a GTK theme for icons

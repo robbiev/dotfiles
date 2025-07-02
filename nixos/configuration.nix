@@ -33,6 +33,9 @@
   # Keep max 10 NixOS generations
   boot.loader.systemd-boot.configurationLimit = 10;
 
+  # Allow cross compiling raspberry pi images
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
   networking.hostName = "neo"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -215,17 +218,9 @@
     };
   };
 
-  # Whether interactive shells should show which Nix package (if any) provides a missing command.
-  programs.command-not-found.enable = true;
-  #programs.ssh.startAgent = true;
-  #programs.ssh.enableAskPassword = true;
-  #programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
-
-  #programs.waybar.enable = true;
-  #programs.mako.enable = true;
-  #programs.fuzzel.enable = true;
-  #programs.xwayland-sattelite.enable = true;
-  #programs.pantheon.pantheon-agent-polkit.enable = true;
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
+  #services.tailscale.extraSetFlags = [ "--advertise-exit-node" "--ssh" ];
 
   # To properly link xdg-desktop-portal definitions and configurations in
   # NixOS, you need to add /share/xdg-desktop-portal and /share/applications to
@@ -262,15 +257,6 @@
       # obs.default = "gnome";
     };
   };
-
-  # Configure keymap in X11
-  #services.xserver.xkb = {
-  #  layout = "us";
-  #  variant = "";
-  #};
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

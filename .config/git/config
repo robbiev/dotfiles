@@ -1,6 +1,8 @@
 [user]
   name = Robbie Vanbrabant
   email = robbie.vanbrabant@gmail.com
+[init]
+  defaultBranch = main
 [color]
   diff = auto
   status = auto

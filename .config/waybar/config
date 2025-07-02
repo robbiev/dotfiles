@@ -54,7 +54,7 @@
       "spacing": 10
     },
     "clock": {
-      "format": "{:%d-%m-%Y | %H:%M}",
+      "format": "{:%a %d %b %Y | %H:%M}",
       "tooltip": false
     }
 }
