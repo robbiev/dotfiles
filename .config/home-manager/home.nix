@@ -39,6 +39,12 @@
     bitwarden-desktop
     youtube-music
 
+    libreoffice
+    hunspell
+    hunspellDicts.en_GB-ise
+    hunspellDicts.en_US
+    hunspellDicts.nl_NL
+
     zig
     zls
     go

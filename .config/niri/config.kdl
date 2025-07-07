@@ -100,6 +100,10 @@ cursor {
     // mv BreezeX-* ~/.icons/
     xcursor-theme "BreezeX-Dark"
     xcursor-size 40
+
+    // Also run the following (fixes libreoffice cursor size)
+    // dconf write /org/gnome/desktop/interface/cursor-size "'BreezeX-Dark'"
+    // dconf write /org/gnome/desktop/interface/cursor-size "40"
 }
 
 // You can configure outputs by their name, which you can find
