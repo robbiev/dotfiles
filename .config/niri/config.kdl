@@ -90,8 +90,8 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
-    focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="0%"
+    //focus-follows-mouse
 }
 
 cursor {
@@ -341,6 +341,28 @@ window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
+
+// Window ID 7: (focused)
+//   Title: "Project Diablo 2 Launcher"
+//   App ID: "pd2launcher.exe"
+//   Is floating: no
+//   PID: 1159
+//   Workspace ID: 1
+// Window ID 8: (focused)
+//   Title: "Diablo II"
+//   App ID: "game.exe"
+//   Is floating: no
+//   PID: 1159
+//   Workspace ID: 1
+
+window-rule {
+    match app-id=r#"^pd2launcher.exe$"# title="^Project Diablo 2 Launcher$"
+    open-floating true
+}
+// window-rule {
+//     match app-id=r#"^game.exe$"# title="^Diablo II$"
+//     open-floating true
+// }
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
