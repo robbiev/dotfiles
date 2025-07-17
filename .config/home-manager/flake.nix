@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -9,12 +10,19 @@
   };
   outputs = {
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     ...
   }: let
     username = "robbiev";
     system = "x86_64-linux";
     pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+    pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config = {
         allowUnfree = true;
@@ -31,6 +39,9 @@
             home.homeDirectory = "/home/${username}";
           }
         ];
+        extraSpecialArgs = {
+          inherit pkgs-unstable;
+        };
       };
     };
   };

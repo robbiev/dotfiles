@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }: {
   home.stateVersion = "25.05";
@@ -54,6 +55,7 @@
     nodePackages.prettier
     ruff
     rustfmt
+    pkgs-unstable.claude-code
 
     x11_ssh_askpass
     keychain # use this to manage the ssh agent
@@ -74,6 +76,8 @@
     enable = true;
     addKeysToAgent = "yes";
   };
+
+  programs.direnv.enable = true;
 
   xdg.desktopEntries = {
     # Signal needs the tray icon to be able to show the window on Wayland
