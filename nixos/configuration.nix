@@ -311,6 +311,9 @@
 
   programs.dconf.enable = true;
 
+  # Doesn't play nice with flakes so disable for now
+  programs.command-not-found.enable = false;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

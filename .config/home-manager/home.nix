@@ -60,7 +60,7 @@
     x11_ssh_askpass
     keychain # use this to manage the ssh agent
     fish
-    fishPlugins.bass
+    fishPlugins.foreign-env
   ];
 
   # Apps like Ghostty require a GTK theme for icons

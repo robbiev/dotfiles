@@ -68,8 +68,8 @@ if type -q keychain
   end
 end
 
-if type -q bass
-  if test -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-    bass source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+if type -q fenv
+  if test -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" > /dev/null
   end
 end
