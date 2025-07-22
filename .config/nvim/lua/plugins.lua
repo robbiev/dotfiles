@@ -17,6 +17,10 @@ return {
     config = function()
       require("oil").setup({
         extra_scp_args = { "-O" }, -- Use the legacy SCP protocol for now, as I have some old servers
+        keymaps = {
+          ["<C-h>"] = false,
+          ["<C-l>"] = false,
+        },
       })
       vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end,
