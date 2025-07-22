@@ -18,6 +18,10 @@
     git
     tree
 
+    jujutsu
+    helix
+    kakoune
+
     stow # dotfiles
 
     chromium
@@ -25,15 +29,7 @@
 
     neovim
 
-    # Workaround for kernel 6.15.4
-    # https://github.com/ghostty-org/ghostty/discussions/7720
-    (ghostty.overrideAttrs (_: {
-      preBuild = ''
-        shopt -s globstar
-        sed -i 's/^const xev = @import("xev");$/const xev = @import("xev").Epoll;/' **/*.zig
-        shopt -u globstar
-      '';
-    }))
+    ghostty
     foot
 
     signal-desktop
@@ -60,7 +56,7 @@
     x11_ssh_askpass
     keychain # use this to manage the ssh agent
     fish
-    fishPlugins.foreign-env
+    fishPlugins.foreign-env # load home manager session vars
   ];
 
   # Apps like Ghostty require a GTK theme for icons
