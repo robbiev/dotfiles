@@ -3,6 +3,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    ghostty.url = "github:ghostty-org/ghostty";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs"; # Ensure home-manager uses the same nixpkgs as the main flake
@@ -12,6 +14,7 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
+    ghostty,
     ...
   }: let
     username = "robbiev";
@@ -41,6 +44,7 @@
         ];
         extraSpecialArgs = {
           inherit pkgs-unstable;
+          inherit ghostty;
         };
       };
     };

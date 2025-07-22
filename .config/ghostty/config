@@ -1,5 +1,11 @@
 #command = /usr/local/bin/fish
 
+# Ghostty to play nice with SSH
+# Add the following Tailscale SSH config (or equivalent for sshd)
+# "acceptEnv": ["TERM_PROGRAM", "TERM_PROGRAM_VERSION", "COLORTERM"],
+# Any intermediate SSH hops need `ssh -o "SendEnv COLORTERM TERM_PROGRAM TERM_PROGRAM_VERSION" computer` to continue to carry this info
+shell-integration-features = ssh-env,ssh-terminfo
+
 theme = "tokyonight-day"
 selection-invert-fg-bg = true
 
