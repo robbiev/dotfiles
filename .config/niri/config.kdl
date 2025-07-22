@@ -408,7 +408,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Ghostty" { spawn "uwsm-app" "ghostty"; }
+    Mod+T hotkey-overlay-title="Ghostty" { spawn "uwsm-app" "--" "ghostty" "+new-window"; }
     Mod+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel" "--launch-prefix" "uwsm-app -- "; }
     Super+Alt+L hotkey-overlay-title="Swaylock" { spawn "uwsm-app" "swaylock"; }
 
