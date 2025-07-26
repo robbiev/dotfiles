@@ -20,13 +20,13 @@
     tree
 
     jujutsu
-    helix
     kakoune
 
     stow # dotfiles
 
     chromium
     firefox-wayland
+    yt-dlp
 
     neovim
 
@@ -82,6 +82,27 @@
   };
 
   programs.direnv.enable = true;
+
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "solarized_dark";
+      editor.cursor-shape = {
+        normal = "block";
+        insert = "bar";
+      };
+      editor.file-picker = {
+        hidden = false;
+      };
+    };
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = "${pkgs.alejandra}/bin/alejandra";
+      }
+    ];
+  };
 
   xdg.desktopEntries = {
     # Signal needs the tray icon to be able to show the window on Wayland

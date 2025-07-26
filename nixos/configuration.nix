@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   lib,
   ...
 }: {
@@ -84,6 +85,8 @@
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
+    rocmPackages.rocm-smi
+    btop-rocm
 
     lutris
     wineWowPackages.stableFull
@@ -116,6 +119,7 @@
     ashpd-demo # test app for xdg portals
 
     guvcview # test webcam
+    pkgs-unstable.wiremix
   ];
 
   # Start when uwsm / niri start
@@ -174,6 +178,7 @@
     ubuntu-sans-mono
     nerd-fonts.ubuntu-sans
     nerd-fonts.symbols-only
+    nerd-fonts.iosevka
 
     font-awesome # used in waybar defaults
   ]; #++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
