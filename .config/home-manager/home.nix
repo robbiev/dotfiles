@@ -42,7 +42,6 @@
 
     signal-desktop
     bitwarden-desktop
-    youtube-music
 
     libreoffice
     hunspell

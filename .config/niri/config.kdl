@@ -393,6 +393,15 @@ binds {
     Mod+Space hotkey-overlay-title="Fuzzel" { spawn "fuzzel" "--launch-prefix" "uwsm-app -- "; }
     Super+Alt+L hotkey-overlay-title="Swaylock" { spawn "uwsm-app" "swaylock"; }
 
+    // https://issues.chromium.org/issues/419238474
+    Mod+E hotkey-overlay-title="Mail" { spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://app.fastmail.com"; }
+    Mod+M hotkey-overlay-title="Music" { spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://music.youtube.com"; }
+    Mod+Y hotkey-overlay-title="YouTube" { spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://www.youtube.com"; }
+    Mod+A hotkey-overlay-title="Duck.ai" { spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://duck.ai"; }
+    Mod+D hotkey-overlay-title="Discord" { spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://discord.com/channels/@me"; }
+    Mod+X hotkey-overlay-title="Bluesky" { spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://bsky.app"; }
+    Mod+Alt+X hotkey-overlay-title="Mastodon" { spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://mastodon.social/home"; }
+
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
     XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
