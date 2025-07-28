@@ -6,13 +6,13 @@
 # Any intermediate SSH hops need `ssh -o "SendEnv COLORTERM TERM_PROGRAM TERM_PROGRAM_VERSION" computer` to continue to carry this info
 shell-integration-features = ssh-env,ssh-terminfo
 
-theme = "tokyonight-day"
+theme = "Builtin Solarized Dark"
 selection-invert-fg-bg = true
 
 background-opacity = .95
 background-blur-radius = 20
 
-font-family = "UbuntuSansMono Nerd Font Mono"
+font-family = "Berkeley Mono"
 font-size = 12
 
 mouse-hide-while-typing = false

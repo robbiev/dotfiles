@@ -153,7 +153,7 @@
     defaultFonts = {
       serif = ["DejaVu Serif" "Symbols Nerd Font"];
       sansSerif = ["DejaVu Sans" "Symbols Nerd Font"];
-      monospace = ["UbuntuSansMono Nerd Font Mono"];
+      monospace = ["JetBrainsMonoNL Nerd Font Mono"];
       emoji = ["Noto Color Emoji"];
     };
     #antialias = true;
@@ -175,10 +175,8 @@
     noto-fonts
     noto-fonts-color-emoji
     noto-fonts-monochrome-emoji
-    ubuntu-sans-mono
-    nerd-fonts.ubuntu-sans
     nerd-fonts.symbols-only
-    nerd-fonts.iosevka
+    nerd-fonts.jetbrains-mono
 
     font-awesome # used in waybar defaults
   ]; #++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);

@@ -24,7 +24,7 @@
 
     stow # dotfiles
 
-    chromium
+    ungoogled-chromium
     firefox-wayland
     yt-dlp
 

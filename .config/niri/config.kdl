@@ -94,6 +94,12 @@ input {
     //focus-follows-mouse
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 cursor {
     // https://github.com/ful1e5/BreezeX_Cursor
     // tar -xvf BreezeX-Dark.tar.gz
@@ -144,6 +150,11 @@ output "Dell Inc. DELL U4025QW GLR5D34" {
     // automatically.
     //position x=1280 y=0
 }
+
+workspace "wone"
+workspace "wtwo"
+workspace "wthree"
+workspace "wfour"
 
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
@@ -320,25 +331,15 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // The wiki explains how to configure individual animations:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
 animations {
-    // Uncomment to turn off all animations.
-    // off
-
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    workspace-switch {
+      off
+    }
 }
 
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    open-focused false
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
 // Window ID 7: (focused)
@@ -358,12 +359,13 @@ window-rule {
     match app-id=r#"^pd2launcher.exe$"# title="^Project Diablo 2 Launcher$"
     open-floating true
 }
-// window-rule {
-//     match app-id=r#"^game.exe$"# title="^Diablo II$"
-//     open-floating true
-// }
 
-// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    match app-id=r#"firefox$"#
+    exclude title="^Picture-in-Picture$"
+    default-column-width { proportion 0.66667; }
+}
+
 window-rule {
     // This app-id regular expression will work for both:
     // - host Firefox (app-id is "firefox")
@@ -372,23 +374,9 @@ window-rule {
     open-floating true
 }
 
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
-}
-
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
 window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+    match app-id=r#"^Bitwarden$"#
+    block-out-from "screen-capture"
 }
 
 binds {
@@ -443,6 +431,9 @@ binds {
     Mod+P        { focus-workspace-up; }
     Mod+Shift+N { move-column-to-workspace-down; }
     Mod+Shift+P   { move-column-to-workspace-up; }
+
+    Mod+Prior { move-workspace-up; }  // Mod+PageUp
+    Mod+Next { move-workspace-down; } // Mod+PageDown
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
