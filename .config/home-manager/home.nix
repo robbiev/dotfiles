@@ -58,6 +58,7 @@
     nodePackages.prettier
     ruff
     rustfmt
+    kdlfmt # niri config file
     pkgs-unstable.claude-code
 
     x11_ssh_askpass
@@ -99,6 +100,12 @@
         name = "nix";
         auto-format = true;
         formatter.command = "${pkgs.alejandra}/bin/alejandra";
+      }
+      {
+        name = "kdl";
+        auto-format = true;
+        formatter.command = "${pkgs.kdlfmt}/bin/kdlfmt";
+        formatter.args = ["format" "-"];
       }
     ];
   };
@@ -151,6 +158,14 @@
   #
   home.sessionVariables = {
     SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
+
+    DISPLAY = ":0";
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    MOZ_ENABLE_WAYLAND = "1";
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland";
+    XDG_SESSION_TYPE = "wayland";
   };
 
   # Let Home Manager install and manage itself.

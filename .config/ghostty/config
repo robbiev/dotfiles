@@ -27,5 +27,5 @@ keybind = super+ctrl+left=resize_split:left,30
 keybind = super+ctrl+right=resize_split:right,30
 
 window-decoration = none
-window-padding-x = 5
-window-padding-y = 5
+window-padding-x = 10
+window-padding-y = 10
