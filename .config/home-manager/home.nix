@@ -29,14 +29,16 @@
     yt-dlp
 
     neovim
+    lite-xl
+    lite
 
     ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
-    (writeShellScriptBin "command" ''
-      # This exists to work around a bug in the ghostty fish shell SSH integration.
-      # It runs "env TERM=... command" and fish shell doesn't like that
-      echo "$@"
-      exec "$@"
-    '')
+    # (writeShellScriptBin "command" ''
+    #   # This exists to work around a bug in the ghostty fish shell SSH integration.
+    #   # It runs "env TERM=... command" and fish shell doesn't like that
+    #   echo "$@"
+    #   exec "$@"
+    # '')
 
     foot
 
@@ -166,6 +168,8 @@
     GDK_BACKEND = "wayland,x11";
     QT_QPA_PLATFORM = "wayland";
     XDG_SESSION_TYPE = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    LITE_SCALE = "1.5";
   };
 
   # Let Home Manager install and manage itself.
