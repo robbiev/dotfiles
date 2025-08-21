@@ -1,5 +1,3 @@
-vim.cmd("syntax off")
-
 require("keymap")
 require("opts")
 require("autocmd")
@@ -27,3 +25,7 @@ vim.diagnostic.config({
   signs = false, -- Disable the signs in the gutter/sign column
   virtual_text = { current_line = true },
 })
+
+-- Disable true color to use terminal color palette
+vim.opt.termguicolors = false
+vim.cmd("colorscheme mono-dark")

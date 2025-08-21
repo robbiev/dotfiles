@@ -1,10 +1,10 @@
 set -g fish_greeting
 
 if status is-interactive
-    fish_config theme choose "Solarized Dark"
+    fish_config theme choose "Mono Smoke"
+    #fish_config theme choose "Mono Lace"
 end
 
-set -gx LS_OPTIONS '--color=auto'
 set -gx EDITOR nvim
 set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
@@ -20,13 +20,21 @@ set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
 set -gx PATH $HOME/.local/bin $HOME/bin $HOME/go/bin $PATH
 set -gx PIP_REQUIRE_VIRTUALENV true
 
+function ls --wraps=ls
+    set -l ls_options '--group-directories-first --human-readable --classify -v'
+    switch (uname)
+        case Darwin
+            eval gls $ls_options $argv
+        case Linux
+            set -l ls_cmd (type -P ls)
+            eval $ls_cmd $ls_options $argv
+    end
+end
+
 switch (uname)
     case Darwin
-        alias ls 'gls $LS_OPTIONS -hF'
         set -gx HOMEBREW_NO_ANALYTICS 1
         set -gx HOMEBREW_NO_AUTO_UPDATE 1
-    case Linux
-        alias ls 'ls $LS_OPTIONS -hF'
 end
 
 alias vi nvim

@@ -44,6 +44,7 @@
 
     signal-desktop
     bitwarden-desktop
+    fractal
 
     libreoffice
     hunspell
@@ -62,6 +63,7 @@
     rustfmt
     kdlfmt # niri config file
     pkgs-unstable.claude-code
+    bun
 
     x11_ssh_askpass
     keychain # use this to manage the ssh agent
@@ -88,13 +90,66 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "solarized_dark";
+      theme = "base16_transparent_mono";
       editor.cursor-shape = {
         normal = "block";
         insert = "bar";
       };
       editor.file-picker = {
         hidden = false;
+      };
+    };
+    themes = {
+      # https://github.com/helix-editor/helix/blob/master/runtime/themes/base16_transparent.toml
+      base16_transparent_mono = {
+        "inherits" = "base16_transparent";
+        "comment" = "green";
+
+        "variable" = {};
+        "constant.numeric" = {};
+        "constant" = {};
+        "attribute" = {};
+        "type" = {};
+        "string" = {};
+        "variable.other.member" = {};
+        "constant.character.escape" = {};
+        "function" = {};
+        "constructor" = {};
+        "special" = {};
+        "keyword" = {};
+        "label" = {};
+        "namespace" = {};
+
+        "markup.heading" = {modifiers = ["bold"];};
+        "markup.list" = {};
+        "markup.bold" = {};
+        "markup.italic" = {};
+        "markup.strikethrough" = {};
+        "markup.link.url" = {};
+        "markup.link.text" = {};
+        "markup.quote" = {};
+        "markup.raw" = {};
+        "markup.normal" = {};
+        "markup.insert" = {};
+        "markup.select" = {};
+
+        # "diff.plus" = {};
+        # "diff.delta" = {};
+        # "diff.delta.moved" = {};
+        # "diff.minus" = {};
+
+        # "ui.gutter" = {};
+        # "info" = {};
+        # "hint" = {};
+        # "debug" = {};
+        # "warning" = {};
+        # "error" = {};
+
+        # "diagnostic.info" = {};
+        # "diagnostic.hint" = {};
+        # "diagnostic.debug" = {};
+        # "diagnostic.warning" = {};
+        # "diagnostic.error" = {};
       };
     };
     languages.language = [

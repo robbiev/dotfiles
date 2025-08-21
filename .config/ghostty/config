@@ -8,8 +8,10 @@
 # Any intermediate SSH hops need `ssh -o "SendEnv COLORTERM TERM_PROGRAM TERM_PROGRAM_VERSION" computer` to continue to carry this info
 shell-integration-features = ssh-env,ssh-terminfo
 
-theme = "Builtin Solarized Dark"
-selection-invert-fg-bg = true
+#theme = "Builtin Solarized Dark"
+#theme = "DoomOne"
+theme = "doom-dark"
+#selection-invert-fg-bg = true
 
 background-opacity = .95
 background-blur-radius = 20
@@ -17,6 +19,7 @@ background-blur-radius = 20
 font-family = "Berkeley Mono"
 #font-family = "JetBrainsMonoNL Nerd Font Mono"
 font-size = 12
+#adjust-cell-height = -10%
 
 mouse-hide-while-typing = false
 
