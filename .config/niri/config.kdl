@@ -215,15 +215,24 @@ animations {
         off
     }
 }
+
+// all windows
 window-rule {
-    open-focused false
     geometry-corner-radius 12
     clip-to-geometry true
 }
+
+// non-focused windows
 window-rule {
-    match is-focused=false
+    match is-active=false
     opacity 0.7
 }
+
+window-rule {
+    match app-id="^tracy$"
+    //scroll-factor horizontal=0.7 vertical=-1.0
+}
+
 // Window ID 7: (focused)
 //   Title: "Project Diablo 2 Launcher"
 //   App ID: "pd2launcher.exe"

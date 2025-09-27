@@ -16,10 +16,26 @@ theme = "doom-dark"
 background-opacity = .95
 background-blur-radius = 20
 
-font-family = "Berkeley Mono"
+font-style = "Medium"
+#font-family = "Berkeley Mono"
 #font-family = "JetBrainsMonoNL Nerd Font Mono"
+#font-family = "DejaVu Sans Mono"
+#font-family = "Brutalist Mono"
+#font-family = "Hack"
+
+font-family = "Julia Mono"
+#font-family = "Liberation Mono"
+
+# Julia Mono: slashed zero, alternative "r", fat tilde
+font-feature = +zero, +ss10, +cv03
+
+#font-feature = -calt, -liga, -dlig
+#font-family = "Meslo LG S"
+#font-family = "MesloLGS Nerd Font Mono"
+#font-family = "VictorMono Nerd Font Mono"
 font-size = 12
 #adjust-cell-height = -10%
+#adjust-cell-width = +5%
 
 mouse-hide-while-typing = false
 

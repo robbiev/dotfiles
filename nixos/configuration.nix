@@ -110,6 +110,7 @@
     waybar
     xwayland-satellite
     pantheon.pantheon-agent-polkit # test by running `pkexec whoami`
+    wl-kbptr
 
     #x11_ssh_askpass
 
@@ -120,7 +121,18 @@
 
     guvcview # test webcam
     pkgs-unstable.wiremix
+
+    man-pages
+    man-pages-posix
   ];
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      xorg.libX11
+      libGL
+    ];
+  };
 
   # Start when uwsm / niri start
   systemd.user.services.mako.wantedBy = ["graphical-session.target"];
@@ -177,6 +189,9 @@
     noto-fonts-monochrome-emoji
     nerd-fonts.symbols-only
     nerd-fonts.jetbrains-mono
+
+    julia-mono
+    liberation_ttf
 
     font-awesome # used in waybar defaults
   ]; #++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
@@ -316,6 +331,8 @@
 
   # Doesn't play nice with flakes so disable for now
   programs.command-not-found.enable = false;
+
+  documentation.dev.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

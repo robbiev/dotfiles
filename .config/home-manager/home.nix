@@ -17,7 +17,9 @@
     fzf
     jq
     git
+    git-lfs
     tree
+    broot
 
     jujutsu
     kakoune
@@ -31,6 +33,8 @@
     neovim
     lite-xl
     lite
+    jetbrains.clion
+    tracy
 
     ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     # (writeShellScriptBin "command" ''
@@ -44,7 +48,7 @@
 
     signal-desktop
     bitwarden-desktop
-    fractal
+    pkgs-unstable.aseprite
 
     libreoffice
     hunspell
@@ -52,8 +56,10 @@
     hunspellDicts.en_US
     hunspellDicts.nl_NL
 
-    zig
-    zls
+    pkgs-unstable.odin
+    pkgs-unstable.ols
+    pkgs-unstable.zig_0_15
+    pkgs-unstable.zls_0_15
     go
     gopls
     stylua
@@ -98,13 +104,18 @@
       editor.file-picker = {
         hidden = false;
       };
+      editor.popup-border = "all";
+      editor.gutters = ["diagnostics" "spacer" "diff"];
     };
     themes = {
       # https://github.com/helix-editor/helix/blob/master/runtime/themes/base16_transparent.toml
       base16_transparent_mono = {
         "inherits" = "base16_transparent";
         "comment" = "green";
-
+        "ui.background" = {};
+        "ui.selection" = {modifiers = ["reversed"];};
+        "ui.virtual.whitespace" = {};
+        "ui.statusline" = {modifiers = ["reversed"];};
         "variable" = {};
         "constant.numeric" = {};
         "constant" = {};
