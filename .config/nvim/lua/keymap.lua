@@ -75,6 +75,12 @@ vim.keymap.set("", "<leader>s", ":%s/\\s\\+$//e<cr>", {})
 -- Go to current file directory
 vim.keymap.set("", "<leader>R", ":cd %:h<cr>", {})
 
+-- Go to tag, and show a list of tags if multiple match
+vim.keymap.set("n", "<CR>", "g<C-]>", { noremap = true })
+vim.keymap.set("n", "<BS>", "<C-t>", { noremap = true })
+-- Go to tag in vertical split
+vim.keymap.set("n", "gt", "<C-w>v<C-]>", { noremap = true })
+
 -- Open netrw
 -- vim.keymap.set("", "-", vim.cmd.Ex)
 

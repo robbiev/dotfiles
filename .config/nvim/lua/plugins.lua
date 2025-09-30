@@ -88,9 +88,13 @@ return {
         },
       })
       vim.keymap.set("n", "<leader>b", require("fzf-lua").buffers, { noremap = true })
-      vim.keymap.set("n", "<leader>t", require("fzf-lua").tags, { noremap = true })
+      vim.keymap.set("n", "<leader>tt", require("fzf-lua").tags, { noremap = true })
+      vim.keymap.set("n", "<leader>tb", require("fzf-lua").btags, { noremap = true })
+      vim.keymap.set("n", "<leader>tg", require("fzf-lua").tags_live_grep, { noremap = true })
+      vim.keymap.set("n", "<leader>tw", require("fzf-lua").tags_grep_cword, { noremap = true })
       vim.keymap.set("n", "<leader>f", require("fzf-lua").files, { noremap = true })
-      vim.keymap.set("n", "<leader>g", require("fzf-lua").live_grep_native, { noremap = true })
+      vim.keymap.set("n", "<leader>gg", require("fzf-lua").live_grep_native, { noremap = true })
+      vim.keymap.set("n", "<leader>gw", require("fzf-lua").grep_cword, { noremap = true })
     end,
   },
 }

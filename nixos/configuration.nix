@@ -137,7 +137,7 @@
   # Start when uwsm / niri start
   systemd.user.services.mako.wantedBy = ["graphical-session.target"];
   systemd.user.services.waybar.wantedBy = ["graphical-session.target"];
-  systemd.user.services.xwayland-satellite.wantedBy = ["graphical-session.target"];
+  #systemd.user.services.xwayland-satellite.wantedBy = ["graphical-session.target"];
 
   # Enable hardware sensors
   # hardware.sensor.hddtemp.enable = true;

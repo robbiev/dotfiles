@@ -31,6 +31,7 @@
     yt-dlp
 
     neovim
+    universal-ctags
     lite-xl
     lite
     jetbrains.clion
@@ -227,7 +228,7 @@
   home.sessionVariables = {
     SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
 
-    DISPLAY = ":0";
+    #DISPLAY = ":0";
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     MOZ_ENABLE_WAYLAND = "1";

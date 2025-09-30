@@ -28,7 +28,7 @@ input {
     // Omitting settings disables them, or leaves them at their default values.
     touchpad {
         // off
-        // tap
+        tap
         dwt
         // disable when typing        // dwtp
         // drag false
@@ -226,11 +226,6 @@ window-rule {
 window-rule {
     match is-active=false
     opacity 0.7
-}
-
-window-rule {
-    match app-id="^tracy$"
-    //scroll-factor horizontal=0.7 vertical=-1.0
 }
 
 // Window ID 7: (focused)

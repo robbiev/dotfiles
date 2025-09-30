@@ -19,7 +19,7 @@ require("lazy").setup("plugins", {
   local_spec = false,
 })
 
-vim.lsp.enable({ "gopls", "zls" })
+--vim.lsp.enable({ "gopls", "zls" })
 
 vim.diagnostic.config({
   signs = false, -- Disable the signs in the gutter/sign column
