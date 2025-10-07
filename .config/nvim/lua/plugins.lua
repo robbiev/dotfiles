@@ -87,6 +87,7 @@ return {
           cwd_prompt = false,
         },
       })
+      vim.keymap.set("n", "<leader>q", require("fzf-lua").quickfix, { noremap = true })
       vim.keymap.set("n", "<leader>b", require("fzf-lua").buffers, { noremap = true })
       vim.keymap.set("n", "<leader>tt", require("fzf-lua").tags, { noremap = true })
       vim.keymap.set("n", "<leader>tb", require("fzf-lua").btags, { noremap = true })

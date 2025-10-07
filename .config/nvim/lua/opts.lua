@@ -44,3 +44,14 @@ vim.g.netrw_banner = 0
 -- security
 vim.opt.secure = true
 vim.opt.modeline = false
+
+vim.opt.makeprg = "./build.sh"
+
+vim.opt.errorformat = {
+  "%f:%l:%c: %trror: %m",
+  "%f:%l:%c: %tarning: %m",
+  "%f:%l:%c: %tote: %m",
+  "%f:%l: %trror: %m",
+  "%f:%l: %tarning: %m",
+  "%-G%.%#",
+}

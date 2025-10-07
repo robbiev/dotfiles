@@ -81,6 +81,40 @@ vim.keymap.set("n", "<BS>", "<C-t>", { noremap = true })
 -- Go to tag in vertical split
 vim.keymap.set("n", "gt", "<C-w>v<C-]>", { noremap = true })
 
+local function async_make()
+  local lines = {}
+  local makeprg = vim.fn.expandcmd(vim.o.makeprg)
+
+  print("Building...")
+
+  vim.fn.jobstart(makeprg, {
+    on_stdout = function(_, data)
+      vim.list_extend(lines, data)
+    end,
+    on_stderr = function(_, data)
+      vim.list_extend(lines, data)
+    end,
+    on_exit = function(_, exit_code)
+      vim.schedule(function()
+        vim.fn.setqflist({}, "r", {
+          lines = lines,
+          efm = vim.o.errorformat,
+        })
+
+        if #vim.fn.getqflist() == 0 then
+          print("Build succeeded")
+        else
+          print("Build failed")
+        end
+      end)
+    end,
+    stdout_buffered = true,
+    stderr_buffered = true,
+  })
+end
+
+vim.keymap.set("", "<leader>m", async_make, {})
+
 -- Open netrw
 -- vim.keymap.set("", "-", vim.cmd.Ex)
 
