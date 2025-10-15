@@ -78,12 +78,25 @@
     fishPlugins.foreign-env # load home manager session vars
   ];
 
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
+
   # Apps like Ghostty require a GTK theme for icons
   gtk = {
     enable = true;
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
+    };
+    cursorTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
     };
   };
 

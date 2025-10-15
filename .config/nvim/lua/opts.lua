@@ -41,6 +41,10 @@ vim.g.editorconfig = false
 -- netrw
 vim.g.netrw_banner = 0
 
+-- Vim builtin C parser doesn't like nested initialisers.
+-- So stop highlighting my code in red when it compiles fine.
+vim.g.c_no_curly_error = 1
+
 -- security
 vim.opt.secure = true
 vim.opt.modeline = false
