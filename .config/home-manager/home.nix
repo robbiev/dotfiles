@@ -28,7 +28,9 @@
 
     ungoogled-chromium
     firefox-wayland
-    yt-dlp
+    pkgs-unstable.yt-dlp
+    ffmpeg
+    vlc
 
     neovim
     universal-ctags

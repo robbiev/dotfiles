@@ -192,6 +192,7 @@
 
     julia-mono
     liberation_ttf
+    ibm-plex
 
     font-awesome # used in waybar defaults
   ]; #++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
