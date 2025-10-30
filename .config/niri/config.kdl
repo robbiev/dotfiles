@@ -110,7 +110,9 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "always"
+    center-focused-column "on-overflow"
+
+    always-center-single-column
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
@@ -299,11 +301,15 @@ binds {
     Mod+E hotkey-overlay-title="Mail" {
         spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://app.fastmail.com"
     }
-    Mod+M hotkey-overlay-title="Music" {
-        spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://music.youtube.com"
+    Mod+G hotkey-overlay-title="Mouse Click" {
+        spawn "wlrctl" "pointer" "click" "left"
     }
-    Mod+Y hotkey-overlay-title="YouTube" {
-        spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://www.youtube.com"
+    Mod+M hotkey-overlay-title="Mouse" {
+        spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect" "-o" "mode_floating.label_font_size=14 100% 100" "-o" "mode_floating.selectable_bg_color=#171800DD"
+// "-o" "home_row_keys=abcdefghiop" 
+    }
+    Mod+Y hotkey-overlay-title="Music" {
+        spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://music.youtube.com"
     }
     Mod+A hotkey-overlay-title="Duck.ai" {
         spawn "uwsm-app" "--" "chromium" "--new-window" "--ozone-platform=wayland" "--enable-features=TouchpadOverscrollHistoryNavigation" "--app=https://duck.ai"

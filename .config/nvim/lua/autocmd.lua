@@ -23,14 +23,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup,
-  pattern = "swift",
-  callback = function()
-    vim.bo.commentstring = "// %s"
-  end,
-})
-
 vim.api.nvim_create_autocmd("LspAttach", {
   group = augroup,
   callback = function(ev)

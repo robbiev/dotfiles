@@ -1,3 +1,6 @@
+-- Don't show the welcome screen
+vim.opt.shortmess:append({ I = true })
+
 -- UI
 vim.opt.scrolloff = 3
 

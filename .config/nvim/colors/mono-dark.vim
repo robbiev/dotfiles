@@ -58,3 +58,7 @@ highlight Tag NONE
 highlight SpecialChar NONE
 highlight SpecialComment NONE
 highlight Debug NONE
+
+" fzf-lua specific highlight groups
+highlight FzfLuaCursorLine cterm=reverse gui=reverse
+highlight FzfLuaCursorLineNr cterm=reverse gui=reverse

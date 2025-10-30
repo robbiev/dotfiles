@@ -53,8 +53,11 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
+-- duplicate line maintaining column position
+vim.keymap.set("n", "<leader>d", ":copy.<CR>", { noremap = true })
+
 -- Delete into the black hole register to avoid clobbering the default register.
-vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]])
+--vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]])
 
 -- In visual mode, delete into the black hole register and paste
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -76,10 +79,23 @@ vim.keymap.set("", "<leader>s", ":%s/\\s\\+$//e<cr>", {})
 vim.keymap.set("", "<leader>R", ":cd %:h<cr>", {})
 
 -- Go to tag, and show a list of tags if multiple match
-vim.keymap.set("n", "<CR>", "g<C-]>", { noremap = true })
-vim.keymap.set("n", "<BS>", "<C-t>", { noremap = true })
+vim.keymap.set("n", "<leader><CR>", "g<C-]>zz", { noremap = true })
+-- Go to tag
+vim.keymap.set("n", "<CR>", function()
+  -- Only apply ctag navigation to normal file buffers
+  if vim.bo.buftype == "" then
+    vim.cmd("normal! \x1d") -- Execute <C-]>
+    vim.cmd("normal! zz") -- Center the screen
+  else
+    -- In special buffers (qf, oil, etc.), use default <CR>
+    vim.cmd("normal! \r") -- Execute <CR>
+  end
+end, { noremap = true })
+
 -- Go to tag in vertical split
-vim.keymap.set("n", "gt", "<C-w>v<C-]>", { noremap = true })
+vim.keymap.set("n", "gt", "<C-w>v<C-]>zz", { noremap = true })
+-- Go back from tag nativation
+vim.keymap.set("n", "<BS>", "<C-t>zz", { noremap = true })
 
 local function async_make()
   local lines = {}
@@ -113,7 +129,44 @@ local function async_make()
   })
 end
 
-vim.keymap.set("", "<leader>m", async_make, {})
+vim.keymap.set("n", "<leader>mr", async_make, {})
+
+local function gdb_breakpoint_and_launch(filepath, line_number)
+  local gdb_commands = "start"
+  if filepath and string.len(filepath) > 0 then
+    gdb_commands = string.format("tbreak %s:%d", filepath, line_number)
+    gdb_commands = gdb_commands .. "\nrun\n"
+  end
+
+  -- Write to .gdb_scratch file in current directory
+  local gdb_file = vim.fn.getcwd() .. "/.gdb_scratch"
+  local file = io.open(gdb_file, "w")
+  if file then
+    file:write(gdb_commands)
+    file:close()
+  else
+    vim.notify("Failed to create .gdb_scratch file", vim.log.levels.ERROR)
+    return
+  end
+
+  -- Launch Ghostty
+  local gdb_cmd = "ghostty -e sh -c './build.sh gdbscratch'"
+  vim.fn.jobstart(gdb_cmd, { detach = true })
+
+  vim.notify("Debugger launched", vim.log.levels.INFO)
+end
+
+local function gdb_breakpoint_on_line_and_launch()
+  -- Get current buffer information
+  local bufnr = vim.api.nvim_get_current_buf()
+  local filepath = vim.api.nvim_buf_get_name(bufnr)
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local line_number = cursor[1]
+  gdb_breakpoint_and_launch(filepath, line_number)
+end
+
+vim.keymap.set("n", "<leader>mm", gdb_breakpoint_and_launch, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ml", gdb_breakpoint_on_line_and_launch, { noremap = true, silent = true })
 
 -- Open netrw
 -- vim.keymap.set("", "-", vim.cmd.Ex)

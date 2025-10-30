@@ -110,7 +110,9 @@
     waybar
     xwayland-satellite
     pantheon.pantheon-agent-polkit # test by running `pkexec whoami`
-    wl-kbptr
+
+    pkgs-unstable.wl-kbptr
+    wlrctl
 
     #x11_ssh_askpass
 
@@ -124,6 +126,8 @@
 
     man-pages
     man-pages-posix
+
+    kdePackages.kate
   ];
 
   programs.nix-ld = {
@@ -193,6 +197,8 @@
     julia-mono
     liberation_ttf
     ibm-plex
+    iosevka
+    maple-mono.truetype
 
     font-awesome # used in waybar defaults
   ]; #++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);

@@ -32,12 +32,16 @@
     ffmpeg
     vlc
 
+    pkgs-unstable.obs-studio
+
     neovim
     universal-ctags
     lite-xl
     lite
-    jetbrains.clion
     tracy
+    vis
+
+    lorien
 
     ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     # (writeShellScriptBin "command" ''
