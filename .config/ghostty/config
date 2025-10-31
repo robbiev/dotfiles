@@ -38,7 +38,7 @@ font-size = 12
 #adjust-cell-height = -10%
 #adjust-cell-width = +5%
 
-mouse-hide-while-typing = false
+mouse-hide-while-typing = true
 
 macos-non-native-fullscreen = visible-menu
 macos-option-as-alt = left
@@ -49,6 +49,10 @@ keybind = super+ctrl+up=resize_split:up,30
 keybind = super+ctrl+left=resize_split:left,30
 keybind = super+ctrl+right=resize_split:right,30
 
-window-decoration = none
-window-padding-x = 10
-window-padding-y = 10
+#window-decoration = none
+window-padding-x = 5
+window-padding-y = 5
+
+# quick-terminal-position=center
+# quick-terminal-size=50%,80%
+# keybind = global:super+backquote=toggle_quick_terminal

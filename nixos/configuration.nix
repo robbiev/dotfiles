@@ -105,9 +105,9 @@
 
     wl-clipboard
     xdg-utils # xdg-open
-    fuzzel
-    mako
-    waybar
+    #fuzzel
+    #mako
+    #waybar
     xwayland-satellite
     pantheon.pantheon-agent-polkit # test by running `pkexec whoami`
 
@@ -116,7 +116,7 @@
 
     #x11_ssh_askpass
 
-    blueman
+    #blueman
 
     door-knocker # test app for xdg portals
     ashpd-demo # test app for xdg portals
@@ -126,21 +126,19 @@
 
     man-pages
     man-pages-posix
-
-    kdePackages.kate
   ];
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      xorg.libX11
-      libGL
-    ];
-  };
+  # programs.nix-ld = {
+  #   enable = true;
+  #   libraries = with pkgs; [
+  #     xorg.libX11
+  #     libGL
+  #   ];
+  # };
 
   # Start when uwsm / niri start
-  systemd.user.services.mako.wantedBy = ["graphical-session.target"];
-  systemd.user.services.waybar.wantedBy = ["graphical-session.target"];
+  #systemd.user.services.mako.wantedBy = ["graphical-session.target"];
+  #systemd.user.services.waybar.wantedBy = ["graphical-session.target"];
   #systemd.user.services.xwayland-satellite.wantedBy = ["graphical-session.target"];
 
   # Enable hardware sensors
@@ -211,37 +209,37 @@
   #services.xserver.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
   # Enable the KDE Plasma Desktop Environment.
-  #services.displayManager.sddm.enable = true;
-  #services.displayManager.sddm.wayland.enable = true;
-  #services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   security.polkit.enable = true;
 
-  programs.niri.enable = true;
+  # programs.niri.enable = true;
+  #
+  # programs.uwsm = {
+  #   enable = true;
+  #   waylandCompositors.niri = {
+  #     prettyName = "Niri";
+  #     comment = "Niri compositor managed by UWSM";
+  #     # Writing a shell script to add the CLI flag
+  #     binPath = pkgs.writeShellScript "niri-uwsm-bin" ''
+  #       ${lib.getExe config.programs.niri.package} --session
+  #     '';
+  #   };
+  # };
 
-  programs.uwsm = {
-    enable = true;
-    waylandCompositors.niri = {
-      prettyName = "Niri";
-      comment = "Niri compositor managed by UWSM";
-      # Writing a shell script to add the CLI flag
-      binPath = pkgs.writeShellScript "niri-uwsm-bin" ''
-        ${lib.getExe config.programs.niri.package} --session
-      '';
-    };
-  };
-
-  services.gnome.gnome-keyring.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${lib.getExe config.programs.uwsm.package} start niri-uwsm.desktop";
-        user = "robbiev";
-      };
-      default_session = initial_session;
-    };
-  };
+  # services.gnome.gnome-keyring.enable = true;
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     initial_session = {
+  #       command = "${lib.getExe config.programs.uwsm.package} start niri-uwsm.desktop";
+  #       user = "robbiev";
+  #     };
+  #     default_session = initial_session;
+  #   };
+  # };
 
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";
@@ -258,30 +256,30 @@
   #   "/share/applications"
   # ];
 
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gnome
-      pkgs.xdg-desktop-portal-gtk
-    ];
-
-    #
-    config = {
-      # override defaults at /run/current-system/sw/share/xdg-desktop-portal/*
-      # with new files in /etc/xdg/xdg-desktop-portal/*
-      #
-      # replicate niri defaults
-      niri."org.freedesktop.impl.portal.Access" = "gtk";
-      niri."org.freedesktop.impl.portal.Notification" = "gtk";
-      niri."org.freedesktop.impl.portal.Secret" = "gnome-keyring";
-      # override niri default
-      niri.default = "gnome"; # from gnome,gtk
-      niri."org.freedesktop.impl.portal.FileChooser" = "gtk"; # from gnome,gtk (the default)
-      # common.default = "gnome,gtk";
-      # obs.default = "gnome";
-    };
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   xdgOpenUsePortal = true;
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-gnome
+  #     pkgs.xdg-desktop-portal-gtk
+  #   ];
+  #
+  #   #
+  #   config = {
+  #     # override defaults at /run/current-system/sw/share/xdg-desktop-portal/*
+  #     # with new files in /etc/xdg/xdg-desktop-portal/*
+  #     #
+  #     # replicate niri defaults
+  #     niri."org.freedesktop.impl.portal.Access" = "gtk";
+  #     niri."org.freedesktop.impl.portal.Notification" = "gtk";
+  #     niri."org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+  #     # override niri default
+  #     niri.default = "gnome"; # from gnome,gtk
+  #     niri."org.freedesktop.impl.portal.FileChooser" = "gtk"; # from gnome,gtk (the default)
+  #     # common.default = "gnome,gtk";
+  #     # obs.default = "gnome";
+  #   };
+  # };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -303,7 +301,9 @@
   #services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable libinput support for modern input handling
-  services.libinput.enable = true;
+  services.libinput = {
+    enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.fish.enable = true;
