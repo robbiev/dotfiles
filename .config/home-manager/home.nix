@@ -28,6 +28,7 @@
 
     ungoogled-chromium
     firefox-wayland
+    librewolf
     pkgs-unstable.yt-dlp
     ffmpeg
     vlc

@@ -123,6 +123,7 @@
 
     guvcview # test webcam
     pkgs-unstable.wiremix
+    pkgs-unstable.mission-center
 
     man-pages
     man-pages-posix
@@ -209,9 +210,31 @@
   #services.xserver.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.wayland.enable = true;
+  #services.desktopManager.plasma6.enable = true;
+
+  services.displayManager.cosmic-greeter = {
+    enable = true;
+  };
+  services.desktopManager.cosmic = {
+    enable = true;
+  };
+
+  # use unstable packages for cosmic
+  nixpkgs.overlays = [
+    (
+      final: prev:
+        lib.filterAttrs
+        (
+          name: _:
+            lib.hasPrefix "cosmic-" name
+            || lib.hasPrefix "pop-" name
+            || name == "xdg-desktop-portal-cosmic"
+        )
+        pkgs-unstable
+    )
+  ];
 
   security.polkit.enable = true;
 
@@ -370,7 +393,7 @@
   };
 
   # Optimise nix store disk usage store automatically
-  nix.optimise.automatic = true;
+  nix.optimise.automatic = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
