@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -eo pipefail
-
-if [[ -z "${RESTIC_PASSWORD}" ]]; then
-  echo "Set RESTIC_PASSWORD environment variable"
-  exit 1
-fi
-
-/usr/local/bin/restic "$@"

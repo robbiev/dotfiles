@@ -72,6 +72,45 @@
     # ];
   };
 
+  services.davfs2.enable = true;
+  services.davfs2.settings = {
+    globalSection = {
+      # https://github.com/alisarctl/davfs2/issues/22
+      buf_size = 64;
+    };
+  };
+  environment.etc."davfs2/secrets" = {
+    text = ''
+      # WebDAV credentials
+      # Format: <mount_point> <username> <password>
+      /mnt/tailscale "" ""
+    '';
+    mode = "0600";
+  };
+  systemd.tmpfiles.rules = [
+    "d /mnt/tailscale 0755 root root -"
+  ];
+  systemd.mounts = [
+    {
+      where = "/mnt/tailscale";
+      what = "http://100.100.100.100:8080";
+      type = "davfs";
+      options = "rw";
+      # ensure tailscale is running before mounting
+      requires = ["tailscaled.service"];
+      after = ["tailscaled.service"];
+    }
+  ];
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.systemd1.manage-units" &&
+          action.lookup("unit") == "mnt-tailscale.mount" &&
+          subject.isInGroup("users")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
   # GPU monitoring tools
   environment.systemPackages = with pkgs; [
     git # ensure git is available for nix flakes
@@ -268,6 +307,9 @@
   services.tailscale.useRoutingFeatures = "client";
   #services.tailscale.extraSetFlags = [ "--advertise-exit-node" "--ssh" ];
 
+  # To use the smart card mode (CCID) of Yubikey
+  services.pcscd.enable = true;
+
   # To properly link xdg-desktop-portal definitions and configurations in
   # NixOS, you need to add /share/xdg-desktop-portal and /share/applications to
   # environment.pathsToLink in your configuration.nix if you are using
@@ -394,6 +436,10 @@
 
   # Optimise nix store disk usage store automatically
   nix.optimise.automatic = false;
+
+  nix.extraOptions = ''
+    warn-dirty = false
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

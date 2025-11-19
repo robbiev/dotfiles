@@ -16,13 +16,8 @@
     ripgrep
     fzf
     jq
-    git
-    git-lfs
     tree
     broot
-
-    jujutsu
-    kakoune
 
     stow # dotfiles
 
@@ -40,7 +35,12 @@
     lite-xl
     lite
     tracy
-    vis
+    emacs-pgtk
+
+    git
+    git-lfs
+    jujutsu
+    lazygit
 
     lorien
 
@@ -54,8 +54,8 @@
 
     foot
 
-    signal-desktop
-    bitwarden-desktop
+    pkgs-unstable.signal-desktop
+    pkgs-unstable.bitwarden-desktop
     pkgs-unstable.aseprite
 
     libreoffice
@@ -83,6 +83,15 @@
     keychain # use this to manage the ssh agent
     fish
     fishPlugins.foreign-env # load home manager session vars
+
+    restic
+    rclone
+    pkgs-unstable.bitwarden-cli
+
+    yubikey-manager
+    pkgs-unstable.yubioath-flutter
+    age
+    age-plugin-yubikey
   ];
 
   dconf = {
