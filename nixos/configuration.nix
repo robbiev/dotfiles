@@ -72,6 +72,30 @@
     # ];
   };
 
+  services.printing.enable = true;
+  services.printing.drivers = [pkgs.brlaser];
+
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "Brother_HL_L2445DW";
+        deviceUri = "dnssd://Brother%20HL-L2445DW._ipp._tcp.local/?uuid=e3248000-80ce-11db-8000-94ddf876b721";
+        model = "everywhere";
+        ppdOptions = {
+          PageSize = "A4";
+        };
+      }
+    ];
+    ensureDefaultPrinter = "Brother_HL_L2445DW";
+  };
+
+  # network printer discovery
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   services.davfs2.enable = true;
   services.davfs2.settings = {
     globalSection = {
@@ -440,6 +464,11 @@
   nix.extraOptions = ''
     warn-dirty = false
   '';
+
+  # Disable systemd-coredump
+  # Use ulimit or gcore
+  systemd.coredump.enable = false;
+  boot.kernel.sysctl."kernel.core_pattern" = "|/bin/false";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
