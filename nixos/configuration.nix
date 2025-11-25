@@ -331,8 +331,10 @@
   services.tailscale.useRoutingFeatures = "client";
   #services.tailscale.extraSetFlags = [ "--advertise-exit-node" "--ssh" ];
 
-  # To use the smart card mode (CCID) of Yubikey
+  # YubiKey
   services.pcscd.enable = true;
+  services.yubikey-agent.enable = true;
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   # To properly link xdg-desktop-portal definitions and configurations in
   # NixOS, you need to add /share/xdg-desktop-portal and /share/applications to

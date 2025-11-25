@@ -6,6 +6,7 @@ if status is-interactive
 end
 
 set -gx EDITOR nvim
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/yubikey-agent/yubikey-agent.sock"
 set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
   --highlight-line \
@@ -51,13 +52,6 @@ end
 
 if type -q mise
     mise activate fish | source
-end
-
-if type -q keychain
-    keychain --quiet
-    if test -f ~/.keychain/(hostname)-fish
-        source ~/.keychain/(hostname)-fish
-    end
 end
 
 if type -q fenv

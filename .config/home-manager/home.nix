@@ -80,7 +80,6 @@
     bun
 
     x11_ssh_askpass
-    keychain # use this to manage the ssh agent
     fish
     fishPlugins.foreign-env # load home manager session vars
 
