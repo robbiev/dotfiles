@@ -336,6 +336,17 @@
   services.yubikey-agent.enable = true;
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
 
+  # Prevent pcscd from auto-exiting to maintain YubiKey PIN session
+  systemd.services.pcscd = {
+    serviceConfig = {
+      # Override to remove --auto-exit / -x flag
+      ExecStart = lib.mkForce [
+        "" # Clear previous setting
+        "${pkgs.pcsclite}/bin/pcscd -f"
+      ];
+    };
+  };
+
   # To properly link xdg-desktop-portal definitions and configurations in
   # NixOS, you need to add /share/xdg-desktop-portal and /share/applications to
   # environment.pathsToLink in your configuration.nix if you are using
