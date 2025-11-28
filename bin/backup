@@ -6,12 +6,17 @@ set -eo pipefail
 # check existing config
 # rclone config show ds9sftp
 
-export SSH_AUTH_SOCK=""
-
 echo "restic auth"
 export RESTIC_PASSWORD=$(passage restic)
+
 echo "rclone auth"
 export RCLONE_CONFIG_PASS=$(passage rclone)
+
+# yubikey-agent receives HUP because of age-plugin-yubikey when using passage
+# as a workaround force yubikey-agent to reclaim the session
+# whent the lights go out on the yubikey after 5 seconds the session otherwise drops
+ssh-add -l > /dev/null 2>&1 || true
+
 echo "proceeding..."
 echo ""
 
