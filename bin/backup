@@ -1,22 +1,26 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-# TODO: gnome keyring?
-
 # configure rclone
 # rclone config
 # check existing config
 # rclone config show ds9sftp
 
-export BW_SESSION=$(bw unlock --raw)
-export RESTIC_PASSWORD=$(bw get password "restic")
-export RCLONE_CONFIG_PASS=$(bw get password "rclone")
+export SSH_AUTH_SOCK=""
+
+echo "restic auth"
+export RESTIC_PASSWORD=$(passage restic)
+echo "rclone auth"
+export RCLONE_CONFIG_PASS=$(passage rclone)
+echo "proceeding..."
+echo ""
 
 REPO="rclone:ds9sftp:/home/backup/robbie_restic"
 
-restic -r "$REPO" backup ~/dropbox
+restic -r "$REPO" backup \
+  ~/dropbox \
+  ~/Games/pd2/drive_c/d2/Save
+
 restic -r "$REPO" forget --keep-monthly 5 --keep-last 5 --prune
 
 #restic -r "$REPO" check --read-data
-
-bw lock
