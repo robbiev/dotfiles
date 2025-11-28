@@ -91,9 +91,13 @@
     pkgs-unstable.yubioath-flutter
     age
     age-plugin-yubikey
+    age-plugin-se
     paper-age
     passage
     qrencode
+
+    syncthing
+    syncthingtray
   ];
 
   dconf = {
