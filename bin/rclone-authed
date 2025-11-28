@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -eo pipefail
 echo "rclone auth"
-export RCLONE_CONFIG_PASS=$(passage rclone)
+export RCLONE_CONFIG_PASS=$(p rclone)
 rclone "$@"

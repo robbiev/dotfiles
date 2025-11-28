@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+passage "$@"
+# Hack to preserve YubiKey PIN cache that yubikey-agent maintains by
+# maintaining a long lived session. yubikey-agent receives HUP because of
+# age-plugin-yubikey using the yubikey. Even though age-plugin-yubikey seems to
+# use "shared" mode, it's interrupts the yubikey-agent long lived session. As a
+# workaround force yubikey-agent to reclaim the session before the lights go
+# out on the yubikey.
+# Possibly yubikey-agent could be changed to take shared access, but comments
+# in piv-go seem to indicate that using shared mode will disable PIN caching.
+ssh-add -l > /dev/null 2>&1 || true
