@@ -72,6 +72,10 @@
     # ];
   };
 
+  # nfs
+  boot.supportedFilesystems = ["nfs"];
+  services.rpcbind.enable = true;
+
   services.printing.enable = true;
   services.printing.drivers = [pkgs.brlaser];
 
@@ -190,6 +194,8 @@
 
     man-pages
     man-pages-posix
+
+    nfs-utils
   ];
 
   # programs.nix-ld = {
