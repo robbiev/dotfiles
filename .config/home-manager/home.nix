@@ -84,15 +84,12 @@
     fishPlugins.foreign-env # load home manager session vars
 
     restic
-    rclone
-    pkgs-unstable.bitwarden-cli
 
     yubikey-manager
     pkgs-unstable.yubioath-flutter
     age
     age-plugin-yubikey
     age-plugin-se
-    paper-age
     passage
     qrencode
 
