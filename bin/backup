@@ -16,6 +16,7 @@ export RESTIC_PASSWORD="$(p restic)"
 #exit 0
 
 restic backup --tag neo \
+  ~/.passage/store \
   ~/dropbox \
   ~/Games/pd2/drive_c/d2/Save
 
@@ -46,6 +47,7 @@ echo ""
 #exit 0
 
 restic backup --tag neo \
+  ~/.passage/store \
   ~/dropbox \
   ~/Games/pd2/drive_c/d2/Save
 
