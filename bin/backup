@@ -1,14 +1,41 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+################################################################################
+# neo to ds9
+################################################################################
+export RESTIC_REPOSITORY="/mnt/ds9backuplocal/restic_robbie"
+
+systemctl start mnt-ds9backuplocal.mount
+
+echo "waiting for restic encryption password..."
+export RESTIC_PASSWORD="$(p restic)"
+
+# one time setup (uncomment when creating new repo)
+#restic init
+#exit 0
+
+restic backup --tag neo \
+  ~/dropbox \
+  ~/Games/pd2/drive_c/d2/Save
+
+restic forget --tag neo \
+  --keep-daily 7 \
+  --keep-weekly 4 \
+  --keep-monthly 6 \
+  --prune
+
+systemctl stop mnt-ds9backuplocal.mount
+
+################################################################################
+# neo to cloud
+################################################################################
+export RESTIC_REPOSITORY="b2:trunky-backup-restic:/"
+
 echo "waiting for b2 application key id..."
 export B2_ACCOUNT_ID="$(p restic-backblaze-key-id)"
 echo "waiting for b2 application key..."
 export B2_ACCOUNT_KEY="$(p restic-backblaze)"
-
-echo "waiting for restic encryption password..."
-export RESTIC_PASSWORD="$(p restic)"
-export RESTIC_REPOSITORY="b2:trunky-backup-restic:/"
 
 echo ""
 echo "starting..."
@@ -33,3 +60,19 @@ restic forget --tag neo \
 
 # periodic integrity check (uncomment to run)
 #restic check --read-data-subset=5%
+
+################################################################################
+# ds9 to cloud
+################################################################################
+systemctl start mnt-ds9backupcloud.mount
+
+restic backup --tag ds9 /mnt/ds9backupcloud
+
+# Last 12 months: one snapshot per month
+# Last 5 years:   one snapshot per year
+restic forget --tag ds9 \
+  --keep-monthly 12 \
+  --keep-yearly 5 \
+  --prune
+
+systemctl stop mnt-ds9backupcloud.mount

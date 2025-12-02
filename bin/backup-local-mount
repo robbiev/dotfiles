@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+################################################################################
+# local
+################################################################################
+export RESTIC_REPOSITORY="/mnt/ds9backuplocal/restic_robbie"
+
+systemctl start mnt-ds9backuplocal.mount
+
+echo "waiting for restic encryption password..."
+export RESTIC_PASSWORD="$(p restic)"
+
+# one time setup (uncomment when creating new repo)
+#restic init
+#exit 0
+
+mkdir -p /tmp/ds9backuplocal-browse
+restic mount /tmp/ds9backuplocal-browse
+
+systemctl stop mnt-ds9backuplocal.mount
