@@ -117,6 +117,8 @@
   };
   systemd.tmpfiles.rules = [
     "d /mnt/tailscale 0755 root root -"
+    "d /mnt/ds9backupcloud 0755 root root -"
+    "d /mnt/ds9backuplocal 0755 root root -"
   ];
   systemd.mounts = [
     {
@@ -128,11 +130,29 @@
       requires = ["tailscaled.service"];
       after = ["tailscaled.service"];
     }
+    {
+      where = "/mnt/ds9backupcloud";
+      what = "ds9:/volume1/backupcloud";
+      type = "nfs";
+      options = "nolock,vers=3";
+      requires = ["tailscaled.service"];
+      after = ["tailscaled.service"];
+    }
+    {
+      where = "/mnt/ds9backuplocal";
+      what = "ds9:/volume1/backuplocal";
+      type = "nfs";
+      options = "nolock,vers=3";
+      requires = ["tailscaled.service"];
+      after = ["tailscaled.service"];
+    }
   ];
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (action.id == "org.freedesktop.systemd1.manage-units" &&
-          action.lookup("unit") == "mnt-tailscale.mount" &&
+          (action.lookup("unit") == "mnt-tailscale.mount" ||
+           action.lookup("unit") == "mnt-ds9backupcloud.mount" ||
+           action.lookup("unit") == "mnt-ds9backuplocal.mount") &&
           subject.isInGroup("users")) {
         return polkit.Result.YES;
       }
