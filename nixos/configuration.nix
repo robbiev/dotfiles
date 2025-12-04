@@ -311,19 +311,19 @@
   };
 
   # use unstable packages for cosmic
-  nixpkgs.overlays = [
-    (
-      final: prev:
-        lib.filterAttrs
-        (
-          name: _:
-            lib.hasPrefix "cosmic-" name
-            || lib.hasPrefix "pop-" name
-            || name == "xdg-desktop-portal-cosmic"
-        )
-        pkgs-unstable
-    )
-  ];
+  # nixpkgs.overlays = [
+  #   (
+  #     final: prev:
+  #       lib.filterAttrs
+  #       (
+  #         name: _:
+  #           lib.hasPrefix "cosmic-" name
+  #           || lib.hasPrefix "pop-" name
+  #           || name == "xdg-desktop-portal-cosmic"
+  #       )
+  #       pkgs-unstable
+  #   )
+  # ];
 
   security.polkit.enable = true;
 

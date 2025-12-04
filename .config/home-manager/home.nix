@@ -2,6 +2,7 @@
   config,
   pkgs,
   pkgs-unstable,
+  pkgs-25-05,
   ghostty,
   ...
 }: {
@@ -22,7 +23,7 @@
     stow # dotfiles
 
     ungoogled-chromium
-    firefox-wayland
+    firefox
     librewolf
     pkgs-unstable.yt-dlp
     ffmpeg
@@ -89,7 +90,7 @@
     pkgs-unstable.yubioath-flutter
     age
     age-plugin-yubikey
-    age-plugin-se
+    pkgs-25-05.age-plugin-se # Failed to build on 25.11, see https://github.com/NixOS/nixpkgs/issues/462451
     passage
     qrencode
 
@@ -119,10 +120,8 @@
     };
   };
 
-  programs.ssh = {
-    enable = true;
-    addKeysToAgent = "yes";
-  };
+  programs.ssh.enable = true;
+  programs.ssh.enableDefaultConfig = false;
 
   programs.direnv.enable = true;
 
