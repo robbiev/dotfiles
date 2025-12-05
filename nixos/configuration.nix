@@ -253,6 +253,7 @@
   };
 
   fonts.fontconfig = {
+    useEmbeddedBitmaps = true; # fix emoji in firefox
     enable = true;
     defaultFonts = {
       serif = ["DejaVu Serif" "Symbols Nerd Font"];
