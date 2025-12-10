@@ -211,14 +211,12 @@
   };
 
   xdg.desktopEntries = {
-    # See https://nixos.wiki/wiki/Chromium:
-    # >Note: as of January 2025, if Chromium shows "Video Decode: Hardware
-    # >accelerated" in chrome://gpu; but Video Acceleration Information section
-    # >is empty, use the following flags:
+    # See https://nixos.wiki/wiki/Chromium and https://wiki.archlinux.org/title/Chromium#Hardware_video_acceleration
+    # Important: AcceleratedVideoEncoder, VaapiVideoDecodeLinuxGL, AcceleratedVideoDecodeLinuxGL
     chromium-browser = {
       name = "Chromium";
       type = "Application";
-      exec = "${pkgs.ungoogled-chromium}/bin/chromium --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo,WaylandWindowDecorations --disable-features=UseChromeOSDirectVideoDecoder %U";
+      exec = "${pkgs.ungoogled-chromium}/bin/chromium --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,VaapiVideoEncoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo,WaylandWindowDecorations --disable-features=UseChromeOSDirectVideoDecoder --ignore-gpu-blocklist %U";
       icon = "chromium";
       categories = ["Network" "WebBrowser"];
       mimeType = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https"];
