@@ -83,7 +83,8 @@
     ensurePrinters = [
       {
         name = "Brother_HL_L2445DW";
-        deviceUri = "dnssd://Brother%20HL-L2445DW._ipp._tcp.local/?uuid=e3248000-80ce-11db-8000-94ddf876b721";
+        # Direct IPP connection to avoid cups-browsed discovery caching. Need DHCP reservation for 192.168.1.62.
+        deviceUri = "ipp://192.168.1.62/ipp/print";
         model = "everywhere";
         ppdOptions = {
           PageSize = "A4";

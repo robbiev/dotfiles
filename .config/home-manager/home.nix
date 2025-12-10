@@ -210,20 +210,20 @@
     ];
   };
 
-  # xdg.desktopEntries = {
-  #   # Signal needs the tray icon to be able to show the window on Wayland
-  #   # (niri), and Electron apps can't correctly infer the password store in
-  #   # niri, as it hard codes allowed XDG_CURRENT_DESKTOP values. So I override
-  #   # the Signal desktop shortcut to add the necessary command line flags.
-  #   signal = {
-  #     name = "Signal";
-  #     type = "Application";
-  #     exec = "${pkgs.signal-desktop}/bin/signal-desktop --use-tray-icon --password-store=gnome-libsecret";
-  #     icon = "signal-desktop";
-  #     categories = ["Network" "InstantMessaging" "Chat"];
-  #     mimeType = ["x-scheme-handler/sgnl" "x-scheme-handler/signalcaptcha"];
-  #   };
-  # };
+  xdg.desktopEntries = {
+    # See https://nixos.wiki/wiki/Chromium:
+    # >Note: as of January 2025, if Chromium shows "Video Decode: Hardware
+    # >accelerated" in chrome://gpu; but Video Acceleration Information section
+    # >is empty, use the following flags:
+    chromium-browser = {
+      name = "Chromium";
+      type = "Application";
+      exec = "${pkgs.ungoogled-chromium}/bin/chromium --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo,WaylandWindowDecorations --disable-features=UseChromeOSDirectVideoDecoder %U";
+      icon = "chromium";
+      categories = ["Network" "WebBrowser"];
+      mimeType = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https"];
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
