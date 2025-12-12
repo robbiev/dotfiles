@@ -83,8 +83,8 @@
     ensurePrinters = [
       {
         name = "Brother_HL_L2445DW";
-        # Direct IPP connection to avoid cups-browsed discovery caching. Need DHCP reservation for 192.168.1.62.
-        deviceUri = "ipp://192.168.1.62/ipp/print";
+        # Direct IPP connection to avoid cups-browsed discovery caching. Need DHCP reservation for 192.168.1.61.
+        deviceUri = "ipp://192.168.1.61/ipp/print";
         model = "everywhere";
         ppdOptions = {
           PageSize = "A4";
@@ -93,6 +93,10 @@
     ];
     ensureDefaultPrinter = "Brother_HL_L2445DW";
   };
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="video4linux", KERNEL=="video0", RUN+="${pkgs.v4l-utils}/bin/v4l2-ctl --device=/dev/video0 --set-fmt-video=width=1920,height=1080,pixelformat=MJPG --set-parm=30"
+  '';
 
   # network printer discovery
   services.avahi = {
@@ -217,6 +221,8 @@
     man-pages-posix
 
     nfs-utils
+
+    v4l-utils
   ];
 
   # programs.nix-ld = {
