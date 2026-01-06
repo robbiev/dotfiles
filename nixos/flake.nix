@@ -26,21 +26,21 @@
         });
       })
       # Patch xpadneo until this issue is fixed: https://github.com/NixOS/nixpkgs/issues/467164
-      (final: prev: {
-        linuxPackages_latest = prev.linuxPackages_latest.extend (lfinal: lprev: {
-          xpadneo = lprev.xpadneo.overrideAttrs (old: {
-            patches =
-              (old.patches or [])
-              ++ [
-                (prev.fetchpatch {
-                  url = "https://github.com/orderedstereographic/xpadneo/commit/233e1768fff838b70b9e942c4a5eee60e57c54d4.patch";
-                  hash = "sha256-HL+SdL9kv3gBOdtsSyh49fwYgMCTyNkrFrT+Ig0ns7E=";
-                  stripLen = 2;
-                })
-              ];
-          });
-        });
-      })
+      # (final: prev: {
+      #   linuxPackages_latest = prev.linuxPackages_latest.extend (lfinal: lprev: {
+      #     xpadneo = lprev.xpadneo.overrideAttrs (old: {
+      #       patches =
+      #         (old.patches or [])
+      #         ++ [
+      #           (prev.fetchpatch {
+      #             url = "https://github.com/orderedstereographic/xpadneo/commit/233e1768fff838b70b9e942c4a5eee60e57c54d4.patch";
+      #             hash = "sha256-HL+SdL9kv3gBOdtsSyh49fwYgMCTyNkrFrT+Ig0ns7E=";
+      #             stripLen = 2;
+      #           })
+      #         ];
+      #     });
+      #   });
+      # })
     ];
   in {
     nixosConfigurations.neo = nixpkgs.lib.nixosSystem {
