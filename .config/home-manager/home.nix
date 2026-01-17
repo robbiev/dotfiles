@@ -57,7 +57,7 @@
 
     pkgs-unstable.signal-desktop
     pkgs-unstable.bitwarden-desktop
-    pkgs-unstable.aseprite
+    aseprite
 
     libreoffice
     hunspell
