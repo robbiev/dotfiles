@@ -31,6 +31,8 @@
   # Basic FIFO queue for I/O scheduling supposedly works well with SSDs
   boot.kernelParams = ["elevator=noop"];
 
+  boot.kernelModules = ["uhid"];
+
   # Keep max 10 NixOS generations
   boot.loader.systemd-boot.configurationLimit = 10;
 
@@ -72,12 +74,17 @@
     # ];
   };
 
+  # improved desktop responsiveness
+  services.system76-scheduler.enable = true;
+
   # nfs
   boot.supportedFilesystems = ["nfs"];
   services.rpcbind.enable = true;
 
   services.printing.enable = true;
   services.printing.drivers = [pkgs.brlaser];
+  # Disable cups-browsed to prevent implicit class creation overriding static printer config
+  services.printing.browsing = false;
 
   hardware.printers = {
     ensurePrinters = [
@@ -96,6 +103,7 @@
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="video4linux", KERNEL=="video0", RUN+="${pkgs.v4l-utils}/bin/v4l2-ctl --device=/dev/video0 --set-fmt-video=width=1920,height=1080,pixelformat=MJPG --set-parm=30"
+    KERNEL=="uhid", SUBSYSTEM=="misc", GROUP="uhid", MODE="0660"
   '';
 
   # network printer discovery
@@ -194,6 +202,8 @@
 
     usbutils
     pciutils
+
+    libnotify # notify-send
 
     wl-clipboard
     xdg-utils # xdg-open
@@ -371,15 +381,15 @@
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   # Prevent pcscd from auto-exiting to maintain YubiKey PIN session
-  systemd.services.pcscd = {
-    serviceConfig = {
-      # Override to remove --auto-exit / -x flag
-      ExecStart = lib.mkForce [
-        "" # Clear previous setting
-        "${pkgs.pcsclite}/bin/pcscd -f"
-      ];
-    };
-  };
+  # systemd.services.pcscd = {
+  #   serviceConfig = {
+  #     # Override to remove --auto-exit / -x flag
+  #     ExecStart = lib.mkForce [
+  #       "" # Clear previous setting
+  #       "${pkgs.pcsclite}/bin/pcscd -f"
+  #     ];
+  #   };
+  # };
 
   # To properly link xdg-desktop-portal definitions and configurations in
   # NixOS, you need to add /share/xdg-desktop-portal and /share/applications to
@@ -446,9 +456,11 @@
   users.users.robbiev = {
     isNormalUser = true;
     description = "Robbie Vanbrabant";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "uhid"];
     shell = pkgs.fish;
   };
+
+  users.groups.uhid = {};
 
   environment.sessionVariables = {
     # Force hardware acceleration

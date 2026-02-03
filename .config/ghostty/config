@@ -14,7 +14,7 @@
 theme = "doom-dark"
 #selection-invert-fg-bg = true
 
-background-opacity = .95
+#background-opacity = .95
 background-blur-radius = 20
 
 font-style = "Medium"
