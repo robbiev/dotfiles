@@ -233,6 +233,8 @@
     nfs-utils
 
     v4l-utils
+
+    pinentry-gnome3 # make available in path for easy testing
   ];
 
   # programs.nix-ld = {
