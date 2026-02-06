@@ -45,7 +45,8 @@
 
     lorien
 
-    ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs-unstable.ghostty
+    #ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     # (writeShellScriptBin "command" ''
     #   # This exists to work around a bug in the ghostty fish shell SSH integration.
     #   # It runs "env TERM=... command" and fish shell doesn't like that
@@ -78,6 +79,7 @@
     rustfmt
     kdlfmt # niri config file
     pkgs-unstable.claude-code
+    pkgs-unstable.amp-cli
     bun
 
     x11_ssh_askpass
